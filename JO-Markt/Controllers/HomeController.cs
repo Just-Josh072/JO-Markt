@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using JOMarkt.Models;
-using JOMarkt.Models;
+
 
 namespace JOMarkt.Controllers
 {

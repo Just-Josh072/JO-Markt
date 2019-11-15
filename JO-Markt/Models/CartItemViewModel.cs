@@ -5,11 +5,8 @@ using System.Threading.Tasks;
 
 namespace JOMarkt.Models
 {
-    public class Shoppingcart
-    {
-       // bezotg ding 
-    }
-    public class ShoppingCartViewModel
+   
+    public class CartItemViewModel
     {
         public int ProductId { get; set; }
         public int Amount { get; set; }
