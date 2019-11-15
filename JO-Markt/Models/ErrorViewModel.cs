@@ -1,6 +1,6 @@
 using System;
 
-namespace JO_Markt.Models
+namespace JOMarkt.Models
 {
     public class ErrorViewModel
     {
@@ -8,4 +8,4 @@ namespace JO_Markt.Models
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
-}
+} 
