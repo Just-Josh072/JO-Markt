@@ -7,5 +7,8 @@ namespace JOMarkt.Models
 {
     public class SubCategory
     {
+        public Category Category { get; set; }
+        public int SubcategoryId { get; set; }
+        public string Name { get; set; }
     }
 }

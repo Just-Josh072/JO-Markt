@@ -7,6 +7,7 @@ namespace JOMarkt.Models
 {
     public class Shoppingcart
     {
+       // bezotg ding 
     }
     public class ShoppingCartViewModel
     {
