@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace JO_Markt.Data
+namespace JOMarkt.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

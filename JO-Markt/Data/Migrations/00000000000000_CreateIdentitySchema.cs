@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace JO_Markt.Data.Migrations
+namespace JOMarkt.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

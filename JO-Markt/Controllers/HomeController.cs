@@ -4,9 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using JO_Markt.Models;
+using JOMarkt.Models;
+using JOMarkt.Models;
 
-namespace JO_Markt.Controllers
+namespace JOMarkt.Controllers
 {
     public class HomeController : Controller
     {
