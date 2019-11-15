@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace JOMarkt.Models
 {
-    public class Shoppingcart
+    public class SubsubCategory
     {
-       // bezotg ding 
     }
 }
