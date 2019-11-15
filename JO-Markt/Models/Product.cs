@@ -7,5 +7,6 @@ namespace JOMarkt.Models
 {
     public class Product
     {
+
     }
 }
