@@ -2,89 +2,53 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+@* POPUP *@
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="alert alert-success" role="alert">
+                Uw product is succesvol toegevoegd aan uw <a href="#">winkelwagen</a>!
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EAN)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Brand)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shortdescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fulldescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Subcategory)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EAN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Shortdescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fulldescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Weight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Subcategory)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="customcontainer">
+    
+    <br />
+    <h1>Producten</h1>
+    <input type="text" id="myInput" onkeyup="searchFunction()" placeholder=" Zoek een product...">
+    
+    <hr />
+    <br />
+    <ul id="myRow" class="row justify-content-start">
+
+        @foreach (var item in Model)
+        {
+
+            <li>
+                <a asp-action="Detailpagina" asp-route-id="@item.Id" style="text-decoration: none;">
+                <div class="card" style="width: 18rem;">
+                    <div style="width:100%; text-align:center;">
+                        <img class="productfoto" style="margin-top:20px;" src="@item.Image">
+                    </div>
+                    <div class="card-body" style="height:120px;max-height:120px;">
+                        <p class="producttitel">@Html.DisplayFor(modelItem => item.Brand)</p>
+                        @Html.DisplayFor(modelItem => item.Title)
+
+                    </div>
+                    <footer class="addtocartbtn">
+                        @*      <a data-toggle="modal" data-target="#exampleModalCenter" asp-action="AddToCart" asp-route-id="@item.Id" style="color:#fff;">Add to cart</a>*@
+                        <a asp-action="AddToCart" asp-route-id="@item.Id" style="color:#fff;">Add to cart</a>
+                        <p class="price">&euro;@Html.DisplayFor(modelItem => item.Price)</p>
+                    </footer>
+                </div>
+
+                </a>
+             </li>
+        }
+    </ul>
+</div>
+

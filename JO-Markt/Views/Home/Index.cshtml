@@ -1,8 +1,36 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<JOMarkt.Models.Product>
+@{
+    ViewData["Title"] = "KAAs";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<header class="hero">
+    <div class="overlay">
+        <div class="description">
+            <h1>Welkom bij JOMarkt supermarkten!</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis. Suspendisse consectetur mi id libero fringilla, in pharetra sem ullamcorper.</p>
+            @*<a asp-action="Index" asp-controller="Product" class="btn btn-danger">Productoverzicht</a>*@
+        </div>
+    </div>
+</header>
+<br />
+<br />
+<br />
+<div class="customcontainer">
+    @*@foreach (var item in Model )
+    {
+        <div class="col-md-3" style="float:left;">
+            <a asp-controller="product" asp-action="Detailpagina" asp-route-id="@item.Id">
+                <div class="card" style="width: 18rem;">
+                    <div style="width:100%; text-align:center;">
+                        <img class="productfoto" src="@item.Image" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">@item.Shortdescription</p>
+                        <p class="card-text">€@item.Price</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }*@
 </div>
+

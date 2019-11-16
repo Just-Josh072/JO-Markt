@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JO_Markt.Models
+namespace JOMarkt.Models
 {
     public class ApplicationUser : IdentityUser
     {

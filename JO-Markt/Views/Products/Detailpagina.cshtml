@@ -1,0 +1,116 @@
+﻿@model JOMarkt.Models.MultipleProducts
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@* Popup *@
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="alert alert-success" role="alert">
+                Uw product is succesvol toegevoegd aan uw <a href="#">winkelwagen</a>!
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@foreach (var model in Model.Product)
+{
+    <div class="categories">
+        <div class="cats" style="margin-top:0;padding:0;">
+            <a style="margin-right:10%;" href="javascript:history.back()"><i class="fa fa-angle-left" style="margin-bottom:0;padding-bottom:0;"></i> terug</a>
+            <a asp-action="Index" asp-controller="Home">Home</a>
+            <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
+            <a asp-action="Index" asp-controller="Product">Producten</a>
+            <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
+            <a asp-action="Index" asp-controller="Product">@Html.DisplayFor(modelItem => model.Category)</a>
+            <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
+            <a asp-action="Index" asp-controller="Product">@Html.DisplayFor(modelItem => model.Subcategory)</a>
+            <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
+            <a asp-action="Index" asp-controller="Product">@Html.DisplayFor(modelItem => model.SubsubCategory)</a>
+        </div>
+    </div> 
+}
+<div class="shoppingcart">
+    <div class="card">
+        <div id="shopping" class="container"  style="overflow:scroll;">
+            <h2>Winkelwagen:</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col"></th>
+                        <th scope="col">&euro;</th>
+                    </tr>
+               </thead>
+                <tbody>
+                   @foreach (var item in Model.RelatedProducts)
+                    {
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            <img style="width:35%;height:inherit;" src="@item.Image" />
+                        </td>
+                        <td>@item.Price</td>
+                        @Html.DisplayFor(modelItem => item.Price)
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container">
+    @foreach (var model in Model.Product)
+    {
+        <div style="margin-top: 5%;">
+            <div class="row">
+                <div class="col">
+                    <img class="productfotodetails" src="@Html.DisplayFor(modelItem => model.Image)" />
+                </div>
+                <div class="col-8">
+                    <dd class="col-sm-10">
+                        <h1 style="white-space: nowrap;">
+                            @Html.DisplayFor(modelItem => model.Title)
+                        </h1>
+                        <hr />
+                    </dd>
+                    <dd class="col-sm-10">
+                        <p style="color: grey;margin-top:-2%;">@Html.DisplayFor(modelItem => model.EAN)</p>
+                        <p style="color: grey;margin-top:-3%;">@Html.DisplayFor(modelItem => model.Brand)</p>
+
+                    </dd>
+                    <dd class="col-sm-10">
+                        @* <p style="font-size: 40px; font-weight: bold; margin-top:10%;">&euro; @Html.DisplayFor(model => model.Price)</p>*@
+                        <p style="font-size: 40px; font-weight: bold; margin-top:10%;">&euro;@Html.DisplayFor(modelItem => model.Price)</p>
+                        <p style="font-size: 20px; color:grey; font-weight: bold; margin-top:-5%;"> @Html.DisplayFor(modelItem => model.Weight)</p>
+                        @Html.DisplayFor(modelItem => model.Id) <br />
+                        <a asp-controller="Product" asp-action="AddToCart" asp-route-id="@Model.Product">
+                            
+                        </a>
+                    </dd>
+                </div>
+
+            </div>
+            <dl class="row">
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => model.Fulldescription)
+                </dd>
+            </dl>
+        </div>
+        <br />
+        @*<h1>Soortgelijke producten:     </h1>
+        foreach (var related in Model.RelatedProducts)
+        {
+            <div class="block" style="margin-bottom:250px;">
+                <a asp-action="Detailpagina" asp-route-id="@related.Id">
+                    <img class="relatedimg" src="@related.Image">
+                </a>
+            </div>
+        }*@
+       
+    }
+</div>

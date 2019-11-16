@@ -1,0 +1,32 @@
+﻿@model JOMarkt.Models.Categories
+
+@{
+    ViewData["Title"] = "Home";
+}
+<div class="container">
+
+    <div style="margin-bottom:150px;margin-top:50px;">
+        <h1>Categoriën</h1>
+        @foreach (var model in Model.categorie)
+        {
+            @Html.DisplayFor(modelItem => model.Name)
+            <br />
+        }
+        <hr>
+        <br>
+        <h1>Subcategoriën</h1>
+        @foreach (var model in Model.subcategory)
+        {
+            @Html.DisplayFor(modelItem => model.Name)
+            <br />
+        }
+        <hr>
+        <br>
+        <h1>Subsubcategoriën</h1>
+        @foreach (var model in Model.subsubcategory)
+        {
+            @Html.DisplayFor(modelItem => model.Name)
+            <br />
+        }
+    </div>
+</div>

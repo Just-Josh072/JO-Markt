@@ -4,14 +4,16 @@ using JOMarkt.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JOMarkt.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191115124908_kaas")]
+    partial class kaas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,25 +65,6 @@ namespace JOMarkt.Data.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("JOMarkt.Models.Promotions", b =>
-                {
-                    b.Property<int>("Discount_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("DiscountPrice");
-
-                    b.Property<string>("EAN");
-
-                    b.Property<string>("Title");
-
-                    b.Property<DateTime>("ValidUntil");
-
-                    b.HasKey("Discount_Id");
-
-                    b.ToTable("Promotions");
-                });
-
             modelBuilder.Entity("JOMarkt.Models.SubCategory", b =>
                 {
                     b.Property<int>("SubcategoryId")
@@ -96,7 +79,7 @@ namespace JOMarkt.Data.Migrations
 
                     b.HasIndex("CategoryCategorieId");
 
-                    b.ToTable("subCategory");
+                    b.ToTable("SubCategory");
                 });
 
             modelBuilder.Entity("JOMarkt.Models.SubsubCategory", b =>
