@@ -65,8 +65,8 @@ namespace Coma_Supermarkt.Controllers
 
             foreach (var item in promotions)
             {
-                Product products = _context.Product.Where(w => w.EAN == item.EAN).First();
-                model.Add(products);
+                Product product = _context.Product.Where(w => w.EAN == item.EAN).First();
+                model.Add(product);
             }
 
             return View(model);

@@ -43,6 +43,64 @@ namespace JO_Markt.Controllers
             return View(product);
         }
 
+        public async Task<IActionResult> Detailpagina(int? id)
+        {
+            MultipleProducts multipleProducts = new MultipleProducts();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var products = await _context.Product
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            List<Product> product = _context.Product.Where(w => w.Id == id).ToList();
+            List<Product> Related = _context.Product.Where(w => w.Subcategory == products.Subcategory).ToList();
+            List<Product> RelatedCategory = _context.Product.Where(w => w.Category == products.Category).ToList();
+            List<Product> RandomRelated = new List<Product>();
+            List<Product> RandomRelatedCategory = new List<Product>();
+
+            int RelatedItems = 0;
+            if (Related.Count <= 3)
+            {
+                RelatedItems = Related.Count;
+            }
+            else
+            {
+                RelatedItems = 4;
+            }
+
+
+            List<int> number = new List<int>();
+            bool NumberCheck = false;
+            int check = products.Id;
+            number.Add(check);
+            //products.LoadProductAndRelated(RelatedItems, NumberCheck, Related, RandomRelated, number);
+            //products.LoadProductCategory(RelatedItems, NumberCheck, RelatedCategory, RandomRelatedCategory, number);
+
+            multipleProducts.Product = product;
+            multipleProducts.RelatedProducts = RandomRelated;
+            multipleProducts.RelatedCategory = RandomRelatedCategory;
+
+            if (products == null)
+            {
+                return NotFound();
+            }
+
+            foreach (var item in Related)
+            {
+                Console.WriteLine("Id : " + item.Id);
+            }
+
+            Console.WriteLine("Foreach " + number.Count);
+            foreach (var item in number)
+            {
+                Console.WriteLine("Number in list : " + item);
+            }
+
+            return View(multipleProducts);
+        }
+
         // GET: Products/Create
         public IActionResult Create()
         {

@@ -21,7 +21,7 @@
     <div class="categories">
         <div class="cats" style="margin-top:0;padding:0;">
             <a style="margin-right:10%;" href="javascript:history.back()"><i class="fa fa-angle-left" style="margin-bottom:0;padding-bottom:0;"></i> terug</a>
-            <a asp-action="Index" asp-controller="Home">Home</a>
+            <a  asp-action="Index" asp-controller="Home">Home</a>
             <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
             <a asp-action="Index" asp-controller="Product">Producten</a>
             <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
@@ -33,36 +33,7 @@
         </div>
     </div> 
 }
-<div class="shoppingcart">
-    <div class="card">
-        <div id="shopping" class="container"  style="overflow:scroll;">
-            <h2>Winkelwagen:</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col"></th>
-                        <th scope="col">&euro;</th>
-                    </tr>
-               </thead>
-                <tbody>
-                   @foreach (var item in Model.RelatedProducts)
-                    {
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            <img style="width:35%;height:inherit;" src="@item.Image" />
-                        </td>
-                        <td>@item.Price</td>
-                        @Html.DisplayFor(modelItem => item.Price)
 
-                    </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
 <div class="container">
     @foreach (var model in Model.Product)
     {

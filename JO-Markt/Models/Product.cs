@@ -45,7 +45,7 @@ namespace JOMarkt.Models
                     .Descendants("Product")
                     .Select(node => new Product
                     {
-                        //Id = int.Parse(node.Attribute("Id").Value),
+                        Id = int.Parse(node.Attribute("Id").Value),
                         Title = node.Element("Title").Value,
                         EAN = node.Element("EAN").Value,
                         Brand = node.Element("Brand").Value,
@@ -65,7 +65,7 @@ namespace JOMarkt.Models
                 }
 
                 _context.Product.AddRange(itemlist);
-                EmptyTable(_context, "Products");
+                EmptyTable(_context, "Product");
                 _context.SaveChanges();
             }
             catch (Exception error)
@@ -75,8 +75,8 @@ namespace JOMarkt.Models
             }
             if (ErrorOccured == true)
             {
-                Product products1 = new Product();
-                products.Add(products1);
+                Product product1 = new Product();
+                products.Add(product1);
             }
             else
             {
