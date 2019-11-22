@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JOMarkt.Data;
 using JOMarkt.Models;
+using System.Xml.Linq;
 
 namespace JO_Markt.Controllers
 {
@@ -149,5 +150,8 @@ namespace JO_Markt.Controllers
         {
             return _context.Category.Any(e => e.CategorieId == id);
         }
+
+
+        
     }
 }
