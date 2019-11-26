@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<JOMarkt.Models.Category>
 
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,27 +11,57 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<p>
+    <a asp-action="LoadXMLCategories">load cat</a>
+</p>
+<button onclick="scrollWin()">beneed</button>
+<br>
+<br>
+
+<script>
+function scrollWin() {
+  window.scrollBy(0, 10000);
+}
+</script>
+<script>
+    function scrollWin2() {
+        window.scrollBy(0, -10000);
+    }
+</script>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.subcategories)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.subsubcategories)
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CategorieId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CategorieId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CategorieId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subcategories)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subsubcategories)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategorieId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CategorieId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CategorieId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<button onclick="scrollWin2()">om^^</button>

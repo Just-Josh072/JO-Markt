@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using JOMarkt.Data;
 using JOMarkt.Models;
 using System.Xml.Linq;
+using System.Xml;
 
 namespace JO_Markt.Controllers
 {
@@ -151,7 +152,64 @@ namespace JO_Markt.Controllers
             return _context.Category.Any(e => e.CategorieId == id);
         }
 
+        public async Task<IActionResult> LoadXMLCategories()
+        {
 
-        
+            XmlDocument doc = new XmlDocument();
+            doc.Load("https://supermaco.starwave.nl/api/categories");
+            XmlNodeList SubCatList = doc.GetElementsByTagName("Subsubcategory");
+
+            XmlNodeList elemList = doc.GetElementsByTagName("Category");
+            for (int i = 0; i < elemList.Count; i++)
+            {
+                Category c = new Category();
+                c.Name = (elemList[i].SelectSingleNode("./Name").InnerXml);
+                //Console.WriteLine("Name: " + elemList[i].SelectSingleNode("./Name").InnerXml);
+
+                XmlNodeList subcats = elemList[i].SelectNodes("./Subcategory");
+
+                for (int j = 0; j < subcats.Count; j++)
+                {
+                    SubCategory sc = new SubCategory();
+                    c.Name = (elemList[i].SelectSingleNode("./Name").InnerXml);
+                   // Console.WriteLine("--sub: " + subcats[j].SelectSingleNode("./Name").InnerXml);
+
+                    XmlNodeList subsubcats = subcats[j].SelectNodes("./Subsubcategory");
+                    for (int w = 0; w < subsubcats.Count; w++)
+                    {
+                        SubsubCategory ssc = new SubsubCategory();
+                        c.Name = (elemList[j].SelectSingleNode("./Name").InnerXml);
+                        // Console.WriteLine("--subsub: " + subsubcats[w].SelectSingleNode("./Name").InnerXml);
+
+                        //_context.Add(ssc);
+                        // await _context.SaveChangesAsync();
+                       // _context.SubsubCategory.AddRange(ssc);
+                    }
+                    // _context.Add(sc);
+                    // await _context.SaveChangesAsync();
+                    //_context.subCategory.AddRange(sc);
+                }
+                //  Console.WriteLine("subsub: " + SubCatList[i].SelectSingleNode("./Name").InnerXml);
+                _context.Category.AddRange(c);
+               
+                
+
+
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+
+
+
+
+            //await _context.SaveChangesAsync();
+
+
+
+
+
+
+        }
+
     }
 }
