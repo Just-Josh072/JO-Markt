@@ -24,7 +24,7 @@ namespace JO_Markt.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+            return View(await _context.Category.Include(c => c.subcategories).ToListAsync());
         }
 
         // GET: Categories/Details/5
@@ -157,7 +157,7 @@ namespace JO_Markt.Controllers
 
             XmlDocument doc = new XmlDocument();
             doc.Load("https://supermaco.starwave.nl/api/categories");
-            XmlNodeList SubCatList = doc.GetElementsByTagName("Subsubcategory");
+       
 
             XmlNodeList elemList = doc.GetElementsByTagName("Category");
             for (int i = 0; i < elemList.Count; i++)
@@ -171,14 +171,14 @@ namespace JO_Markt.Controllers
                 for (int j = 0; j < subcats.Count; j++)
                 {
                     SubCategory sc = new SubCategory();
-                    c.Name = (elemList[i].SelectSingleNode("./Name").InnerXml);
+                    sc.Name = (subcats[j].SelectSingleNode("./Name").InnerXml);
                    // Console.WriteLine("--sub: " + subcats[j].SelectSingleNode("./Name").InnerXml);
 
                     XmlNodeList subsubcats = subcats[j].SelectNodes("./Subsubcategory");
                     for (int w = 0; w < subsubcats.Count; w++)
                     {
                         SubsubCategory ssc = new SubsubCategory();
-                        c.Name = (elemList[j].SelectSingleNode("./Name").InnerXml);
+                        ssc.Name = (subsubcats[w].SelectSingleNode("./Name").InnerXml);
                         // Console.WriteLine("--subsub: " + subsubcats[w].SelectSingleNode("./Name").InnerXml);
 
                         //_context.Add(ssc);
