@@ -229,7 +229,7 @@ namespace JO_Markt.Controllers
                 p.Image = (product.Element("Image").Value);
                 p.Weight = (product.Element("Weight").Value);
                 p.Price = Convert.ToDouble(product.Element("Price").Value.ToString(CultureInfo.InvariantCulture));
-                
+
                 p.Category = (product.Element("Category").Value);
                 p.Subcategory = (product.Element("Subcategory").Value);
                 p.Subsubcategory = (product.Element("Subsubcategory").Value);
@@ -240,17 +240,6 @@ namespace JO_Markt.Controllers
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));
-
-
-
-
-            //await _context.SaveChangesAsync();
-
-
-
-           
-
-
         }
     }
 }

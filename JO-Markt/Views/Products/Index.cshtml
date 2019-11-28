@@ -15,32 +15,27 @@
     
     <hr />
     <br />
-    <ul id="myRow" class="row justify-content-start">
-
+    <ul class="row justify-content-center">
         @foreach (var item in Model)
         {
-
-            <li>
+            <div style="text-align: center; align-content:center; text-decoration: none;">
                 <a asp-action="Detailpagina" asp-route-id="@item.Id" style="text-decoration: none;">
-                <div class="card" style="width: 18rem;">
-                    <div style="width:100%; text-align:center;">
-                        <img class="productfoto" style="margin-top:20px;" src="@item.Image">
-                    </div>
-                    <div class="card-body" style="height:120px;max-height:120px;">
-                        <p class="producttitel">Merk: @Html.DisplayFor(modelItem => item.Brand)</p>
+                    @*Make a Details Function*@
+                    <div class="card" style="width: 18rem; style="text-align: center; align-content:center">
+                        <div style="width:100%; style="text-align: center; align-content:center">
+                            <img class="productfoto" style="margin-top:20px; width:99%;" src="@item.Image">
+                        </div>
+                        <div class="card-body" style="height:120px;max-height:120px;">
+                            <p class="producttitel">Merk: @Html.DisplayFor(modelItem => item.Brand)</p>
 
-                        @Html.DisplayFor(modelItem => item.Title)
+                            @Html.DisplayFor(modelItem => item.Title)
 
-                    </div>
-                    <footer class="addtocartbtn">
-                        @*      <a data-toggle="modal" data-target="#exampleModalCenter" asp-action="AddToCart" asp-route-id="@item.Id" style="color:#fff;">Add to cart</a>*@
-                        <a asp-action="AddToCart" asp-route-id="@item.Id" style="color:#fff;">Add to cart</a>
+                        </div>
                         <p class="price">&euro;@Html.DisplayFor(modelItem => item.Price)</p>
-                    </footer>
-                </div>
+                    </div>
 
                 </a>
-             </li>
+            </div>
         }
     </ul>
 </div>

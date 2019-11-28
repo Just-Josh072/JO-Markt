@@ -590,9 +590,9 @@ pre code {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+  flex-wrap:wrap;
+  margin-right: -20%;
+  margin-left: -20%;
 }
 
 .no-gutters {
