@@ -591,8 +591,8 @@ pre code {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap:wrap;
-  margin-right: -20%;
-  margin-left: -20%;
+  margin-right: -10%;
+  margin-left: -10%;
 }
 
 .no-gutters {
@@ -4146,17 +4146,37 @@ input[type="button"].btn-block {
 }
 
 .navbar {
-  position: relative;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+
+    @include rainbow;
 }
+
+@mixin rainbow() {
+    background: repeating-linear-gradient(-45deg,red 0%, yellow 7.14%, rgb(0,255,0) 14.28%, rgb(0,255,255) 21.42%, cyan 28.56%, blue 35.7%, magenta 42.84%, red 50%);
+    background-size: 600vw 600vw;
+    -webkit-animation: 'slide' 10s infinite linear forwards;
+}
+
+@keyframes slide {
+    0% {
+        background-position-x: 0%;
+    }
+
+    100% {
+        background-position-x: 600vw;
+    }
+}
+
+
 
 .navbar > .container,
 .navbar > .container-fluid {

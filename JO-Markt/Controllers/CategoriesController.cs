@@ -24,7 +24,7 @@ namespace JO_Markt.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.Include(c => c.subcategories).ToListAsync());
+            return View(await _context.Category.Include(c => c.Categories).ToListAsync());
         }
 
         // GET: Categories/Details/5

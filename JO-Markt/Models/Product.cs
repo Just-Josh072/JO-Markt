@@ -25,8 +25,8 @@ namespace JOMarkt.Models
         public double Price { get; set; }
         public string Category { get; set; }
         public string Subcategory { get; set; }
-   [NotMapped]
-        public object Subsubcategory { get; set; }
+   
+        public string Subsubcategory { get; set; }
        
     }
 }

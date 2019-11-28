@@ -14,8 +14,8 @@
 </header>
 
 
-<div class="align-content-center">
-    @foreach (var item in Model )
+<div style="align-content-center">
+    @foreach (var item in Model)
     {
         <div class="col-md-3" style="float:left;">
             <a asp-controller="product" asp-action="Detailpagina" asp-route-id="@item.Id">
@@ -32,4 +32,20 @@
         </div>
     }
 </div>
-
+fdasjfakd
+@foreach (var item in Model)
+{
+    <div class="col-md-3" style="float:left;">
+        <a asp-controller="product" asp-action="Detailpagina" asp-route-id="@item.Id">
+            <div class="card" style="width: 18rem;">
+                <div style="width:100%; text-align:center;">
+                    <img class="productfoto" src="@item.Image" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                    <p class="card-text">@item.Shortdescription</p>
+                    <p class="card-text">€@item.Price</p>
+                </div>
+            </div>
+        </a>
+    </div>
+}
