@@ -172,31 +172,34 @@ namespace JO_Markt.Controllers
                 {
                     SubCategory sc = new SubCategory();
                     sc.Name = (subcats[j].SelectSingleNode("./Name").InnerXml);
-                   // Console.WriteLine("--sub: " + subcats[j].SelectSingleNode("./Name").InnerXml);
+                    // Console.WriteLine("--sub: " + subcats[j].SelectSingleNode("./Name").InnerXml);
+                    sc.Category = c;
 
                     XmlNodeList subsubcats = subcats[j].SelectNodes("./Subsubcategory");
                     for (int w = 0; w < subsubcats.Count; w++)
                     {
+
                         SubsubCategory ssc = new SubsubCategory();
                         ssc.Name = (subsubcats[w].SelectSingleNode("./Name").InnerXml);
+                        ssc.Subcategory = sc;
                         // Console.WriteLine("--subsub: " + subsubcats[w].SelectSingleNode("./Name").InnerXml);
 
-                        //_context.Add(ssc);
+                        _context.Add(ssc);
                         // await _context.SaveChangesAsync();
                        // _context.SubsubCategory.AddRange(ssc);
                     }
-                    // _context.Add(sc);
+                   _context.Add(sc);
                     // await _context.SaveChangesAsync();
                     //_context.subCategory.AddRange(sc);
                 }
                 //  Console.WriteLine("subsub: " + SubCatList[i].SelectSingleNode("./Name").InnerXml);
-                _context.Category.AddRange(c);
+                _context.Category.Add(c);
                
                 
 
-
-                await _context.SaveChangesAsync();
             }
+            
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 
 
