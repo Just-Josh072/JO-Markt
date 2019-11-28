@@ -228,7 +228,7 @@ namespace JO_Markt.Controllers
                 p.Fulldescription = (product.Element("Fulldescription").Value);
                 p.Image = (product.Element("Image").Value);
                 p.Weight = (product.Element("Weight").Value);
-                p.Price = Convert.ToDouble(product.Element("Price"),CultureInfo.InvariantCulture);
+                p.Price = Convert.ToDouble(product.Element("Price").Value,CultureInfo.InvariantCulture);
 
                 p.Category = (product.Element("Category").Value);
                 p.Subcategory = (product.Element("Subcategory").Value);
