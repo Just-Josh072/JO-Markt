@@ -59,8 +59,11 @@ html {
     margin-left: 10%;
     margin-right: 10%;
 }
-myrow {
+.myrow {
     text-decoration: none;
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 body {
     /* Margin bottom by footer height */

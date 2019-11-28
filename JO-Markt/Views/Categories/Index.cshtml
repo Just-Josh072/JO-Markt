@@ -35,7 +35,7 @@ function scrollWin() {
             @foreach (var item in Model)
             {
 
-                <li class="col-md-3" style="list-style-type:none;">
+                <li class="collum" style="list-style-type:none;">
                     <a asp-action="Subcategories" style="text-decoration: none;">
                         <div class="card" id="catcard" style="width: 18rem;">
                             <div style="width:100%; text-align:center;">
@@ -46,7 +46,7 @@ function scrollWin() {
                                     <br />
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </p>
-                                @*<p class="price">&euro; @Html.DisplayFor(modelItem => item.Price)</p>*@
+                               
                             </div>
                         </div>
                     </a>
