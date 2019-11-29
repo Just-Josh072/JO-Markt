@@ -13,13 +13,13 @@
             <a style="margin-right:10%;" href="javascript:history.back()"><i class="fa fa-angle-left" style="margin-bottom:0;padding-bottom:0;"></i> terug</a>
             <a  asp-action="Index" asp-controller="Home">Home</a>
             <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
-            <a asp-action="Index" asp-controller="Product">Producten</a>
+            <a asp-action="Index" asp-controller="Products">Producten</a>
             <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
-            <a asp-action="Index" asp-controller="Product">@Html.DisplayFor(modelItem => model.Category)</a>
+            <a asp-action="Index" asp-controller="Categories">@Html.DisplayFor(modelItem => model.Category)</a>
             <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
-            <a asp-action="Index" asp-controller="Product">@Html.DisplayFor(modelItem => model.Subcategory)</a>
+            <a asp-action="Index" asp-controller="Subcategory">@Html.DisplayFor(modelItem => model.Subcategory)</a>
             <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
-            <a asp-action="Index" asp-controller="Product">@Html.DisplayFor(modelItem => model.Subsubcategory)</a>
+            <a asp-action="Index" asp-controller="Subsubcategory">@Html.DisplayFor(modelItem => model.Subsubcategory)</a>
 
         </div>
     </div> 
