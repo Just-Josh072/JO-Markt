@@ -11,5 +11,6 @@ namespace JOMarkt.Models
         public Category Categorie { get; set; }
         public int SubsubcategoryId { get; set; }
         public string Name { get; set; }
+        public string Image { get; set; }
     }
 }

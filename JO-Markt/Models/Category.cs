@@ -16,5 +16,6 @@ namespace JOMarkt.Models
         public ICollection<SubCategory> subcategories { get; set; }
         public ICollection<SubsubCategory> subsubcategories { get; set; }
         public ICollection<Categories> Categories { get; set; }
+        public string Image { get; set; }
     }
 }
