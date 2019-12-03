@@ -47,6 +47,13 @@ namespace JOMarkt.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            public string Voornaam { get; set; }
+            [Required]
+            [DataType(DataType.Text)]
+            public string Achternaam { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -67,6 +74,7 @@ namespace JOMarkt.Areas.Identity.Pages.Account.Manage
             {
                 Email = email,
                 PhoneNumber = phoneNumber
+
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);

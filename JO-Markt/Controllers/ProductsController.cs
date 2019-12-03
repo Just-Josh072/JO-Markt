@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JOMarkt.Data;
 using JOMarkt.Models;
+using System.Xml.Linq;
+using System.Globalization;
 
 namespace JO_Markt.Controllers
 {
@@ -20,10 +22,10 @@ namespace JO_Markt.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Product.ToListAsync());
-        }
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Product.ToListAsync());
+        //}
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -42,7 +44,18 @@ namespace JO_Markt.Controllers
 
             return View(product);
         }
+        public async Task<IActionResult> Index(string searchString)
+        {
+            var products = from m in _context.Product
+                         select m;
 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(await products.ToListAsync());
+        }
         public async Task<IActionResult> Detailpagina(int? id)
         {
             MultipleProducts multipleProducts = new MultipleProducts();
@@ -208,6 +221,36 @@ namespace JO_Markt.Controllers
         private bool ProductExists(int id)
         {
             return _context.Product.Any(e => e.Id == id);
+        }
+
+
+        public async Task<IActionResult> LoadXML()
+        {
+            XElement xelement = XElement.Load("http://supermaco.starwave.nl/api/products");
+            IEnumerable<XElement> products = xelement.Elements();
+
+            foreach (var product in products)
+            {
+                Product p = new Product();
+                p.EAN = (product.Element("EAN").Value);
+                p.Title = (product.Element("Title").Value);
+                p.Brand = (product.Element("Brand").Value);
+                p.Shortdescription = (product.Element("Shortdescription").Value);
+                p.Fulldescription = (product.Element("Fulldescription").Value);
+                p.Image = (product.Element("Image").Value);
+                p.Weight = (product.Element("Weight").Value);
+                p.Price = Convert.ToDouble(product.Element("Price").Value,CultureInfo.InvariantCulture);
+
+                p.Category = (product.Element("Category").Value);
+                p.Subcategory = (product.Element("Subcategory").Value);
+                p.Subsubcategory = (product.Element("Subsubcategory").Value);
+
+
+                _context.Add(p);
+
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

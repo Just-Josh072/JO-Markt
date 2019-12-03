@@ -4,14 +4,16 @@ using JOMarkt.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JOMarkt.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191128104956_kaas2")]
+    partial class kaas2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,8 +145,6 @@ namespace JOMarkt.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Image");
-
                     b.Property<string>("Name");
 
                     b.HasKey("CategorieId");
@@ -214,8 +214,6 @@ namespace JOMarkt.Data.Migrations
 
                     b.Property<int?>("CategoryCategorieId");
 
-                    b.Property<string>("Image");
-
                     b.Property<string>("Name");
 
                     b.HasKey("SubcategoryId");
@@ -236,8 +234,6 @@ namespace JOMarkt.Data.Migrations
                     b.Property<int?>("CategorieId");
 
                     b.Property<int?>("Categoriesid");
-
-                    b.Property<string>("Image");
 
                     b.Property<string>("Name");
 

@@ -25,12 +25,8 @@ namespace JOMarkt.Models
         public double Price { get; set; }
         public string Category { get; set; }
         public string Subcategory { get; set; }
-        [NotMapped]
-        public object SubsubCategory { get; private set; }
-
-        public void UpdateProducts(ApplicationDbContext _context)
-        {
-            //hier komt de update ding
-        }
+   
+        public string Subsubcategory { get; set; }
+       
     }
 }

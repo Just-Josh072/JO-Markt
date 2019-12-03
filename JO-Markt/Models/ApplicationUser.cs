@@ -21,7 +21,7 @@ namespace JOMarkt.Models
         public double Huisnummer { get; set; }
         public string Toevoeging { get; set; }
         public int Telefoonnummer { get; set; }
-        public DateTime? Geboortedatum { get; set; }
+        public string Geboortedatum { get; set; }
         public string Emailadres { get; set; }
         public string Wachtwoord { get; set; }
         public string Role { get; set; }

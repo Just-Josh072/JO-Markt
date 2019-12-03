@@ -4,14 +4,16 @@ using JOMarkt.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JOMarkt.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191121150554_xmlInput2")]
+    partial class xmlInput2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,28 +124,11 @@ namespace JOMarkt.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("JOMarkt.Models.Categories", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CategoryCategorieId");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("CategoryCategorieId");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("JOMarkt.Models.Category", b =>
                 {
                     b.Property<int>("CategorieId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Image");
 
                     b.Property<string>("Name");
 
@@ -173,8 +158,6 @@ namespace JOMarkt.Data.Migrations
                     b.Property<string>("Shortdescription");
 
                     b.Property<string>("Subcategory");
-
-                    b.Property<string>("Subsubcategory");
 
                     b.Property<string>("Title");
 
@@ -210,17 +193,11 @@ namespace JOMarkt.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("Categoriesid");
-
                     b.Property<int?>("CategoryCategorieId");
-
-                    b.Property<string>("Image");
 
                     b.Property<string>("Name");
 
                     b.HasKey("SubcategoryId");
-
-                    b.HasIndex("Categoriesid");
 
                     b.HasIndex("CategoryCategorieId");
 
@@ -235,10 +212,6 @@ namespace JOMarkt.Data.Migrations
 
                     b.Property<int?>("CategorieId");
 
-                    b.Property<int?>("Categoriesid");
-
-                    b.Property<string>("Image");
-
                     b.Property<string>("Name");
 
                     b.Property<int?>("SubcategoryId");
@@ -246,8 +219,6 @@ namespace JOMarkt.Data.Migrations
                     b.HasKey("SubsubcategoryId");
 
                     b.HasIndex("CategorieId");
-
-                    b.HasIndex("Categoriesid");
 
                     b.HasIndex("SubcategoryId");
 
@@ -367,21 +338,10 @@ namespace JOMarkt.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("JOMarkt.Models.Categories", b =>
-                {
-                    b.HasOne("JOMarkt.Models.Category")
-                        .WithMany("Categories")
-                        .HasForeignKey("CategoryCategorieId");
-                });
-
             modelBuilder.Entity("JOMarkt.Models.SubCategory", b =>
                 {
-                    b.HasOne("JOMarkt.Models.Categories")
-                        .WithMany("subcategory")
-                        .HasForeignKey("Categoriesid");
-
                     b.HasOne("JOMarkt.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("subcategories")
                         .HasForeignKey("CategoryCategorieId");
                 });
 
@@ -390,10 +350,6 @@ namespace JOMarkt.Data.Migrations
                     b.HasOne("JOMarkt.Models.Category", "Categorie")
                         .WithMany("subsubcategories")
                         .HasForeignKey("CategorieId");
-
-                    b.HasOne("JOMarkt.Models.Categories")
-                        .WithMany("subsubcategory")
-                        .HasForeignKey("Categoriesid");
 
                     b.HasOne("JOMarkt.Models.SubCategory", "Subcategory")
                         .WithMany()

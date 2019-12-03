@@ -58,10 +58,7 @@ namespace Coma_Supermarkt.Controllers
             List<Product> producten = _context.Product.ToList();
             List<Promotions> promotions = _context.Promotions.ToList();
             List<Product> model = new List<Product>();
-            if (producten.Count == 0)
-            {
-                products.UpdateProducts(_context);
-            }
+           
 
             foreach (var item in promotions)
             {
@@ -78,17 +75,7 @@ namespace Coma_Supermarkt.Controllers
         }
 
         
-        public async Task<IActionResult> Xml()
-        {
-            string LoggedInUser = User.Identity.Name;
-            //deliveryslots.UpdateDeliveryslots(_context);
-            //categories.UpdateCategory(_context);
-            products.UpdateProducts(_context);
-            //products.UpdatePromotions(_context);
-            //products.LinkPromotions(_context);
-            //articles.CreateArticle(_context,"image","Title","Content","Publisher",true);
-            return RedirectToAction("Dashboard", "Cms");
-        }
+               
 
         public IActionResult article()
         {
@@ -103,11 +90,6 @@ namespace Coma_Supermarkt.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult DeleteData(string table)
-        {
-            table = "Products";
-            _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [" + table + "]");
-            return RedirectToAction("Index");
-        }
+        
     }
 }
