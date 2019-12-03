@@ -36,7 +36,7 @@ function scrollWin() {
             {
 
                 <li class="collum" style="list-style-type:none;">
-                    <a asp-action="Subcategories" style="text-decoration: none;">
+                    <a asp-action="Details" asp-route-id="@item.CategorieId" style="text-decoration: none;">
                         <div class="card" id="catcard" style="width: 18rem;">
                             <div style="width:100%; text-align:center;">
                                 <img class="productfoto" style="margin-top:20px;" src="(@item.Name).jpg">
