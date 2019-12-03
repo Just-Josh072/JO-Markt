@@ -5,38 +5,41 @@
 }
 
 
-<div class="customcontainer">
-    <p>
-        <a asp-action="LoadXML">Load XML</a>
-    </p>
-    <br />
-    <h1>Producten</h1>
-    <input type="text" id="myInput" onkeyup="searchFunction()" placeholder=" Zoek een product...">
-    
-    <hr />
-    <br />
-    <ul class="row justify-content-center">
-        @foreach (var item in Model)
-        {
-            <div style="text-align: center; align-content:center; text-decoration: none;">
-                <a asp-action="Detailpagina" asp-route-id="@item.Id" style="text-decoration: none;">
-                    
-                    <div class="card" style="width: 18rem; style="text-align: center; align-content:center">
-                        <div style="width:100%; style="text-align: center; align-content:center">
-                            <img class="productfoto" style="margin-top:20px; width:99%;" src="@item.Image">
+    <div class="customcontainer">
+        <p>
+            <a asp-action="LoadXML">Load XML</a>
+        </p>
+        <br />
+        <h1>Producten</h1>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Zoek een product...">
+            <button class="btn btn-danger my-2 my-sm-0" type="submit">Zoeken</button>
+        </form>
+
+        <hr />
+        <br />
+        <ul class="row justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div style="text-align: center; align-content:center; text-decoration: none;">
+                    <a asp-action="Detailpagina" asp-route-id="@item.Id" style="text-decoration: none;">
+
+                        <div class="card" style="width: 18rem; style="text-align: center; align-content:center">
+                            <div style="width:100%; style="text-align: center; align-content:center">
+                                <img class="productfoto" style="margin-top:20px; width:99%;" src="@item.Image">
+                            </div>
+                            <div class="card-body" style="height:120px;max-height:120px;">
+                                <p class="producttitel">Merk: @Html.DisplayFor(modelItem => item.Brand)</p>
+
+                                @Html.DisplayFor(modelItem => item.Title)
+
+                            </div>
+                            <p class="price">&euro;@Html.DisplayFor(modelItem => item.Price)</p>
                         </div>
-                        <div class="card-body" style="height:120px;max-height:120px;">
-                            <p class="producttitel">Merk: @Html.DisplayFor(modelItem => item.Brand)</p>
 
-                            @Html.DisplayFor(modelItem => item.Title)
-
-                        </div>
-                        <p class="price">&euro;@Html.DisplayFor(modelItem => item.Price)</p>
-                    </div>
-
-                </a>
-            </div>
-        }
-    </ul>
-</div>
+                    </a>
+                </div>
+            }
+        </ul>
+    </div>
 
