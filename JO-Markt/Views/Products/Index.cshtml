@@ -11,10 +11,15 @@
         </p>
         <br />
         <h1>Producten</h1>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Zoek een product...">
-            <button class="btn btn-danger my-2 my-sm-0" type="submit">Zoeken</button>
+       
+
+        <form asp-controller="Products" asp-action="Index" method="get">
+            <p>
+                <input type="text" class="from mr-sm-2" type="text"   name="SearchString"  placeholder="Zoek een product...">
+                <input class="btn btn-danger my-2 my-sm-0" type="submit" value="Zoek" />
+            </p>
         </form>
+
 
         <hr />
         <br />
