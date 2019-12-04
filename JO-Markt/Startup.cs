@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using JOMarkt.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using JOMarkt.Models;
 
 namespace JOMarkt
 {
@@ -38,7 +39,7 @@ namespace JOMarkt
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -68,6 +69,9 @@ namespace JOMarkt
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                   name: "Products",
+                   template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

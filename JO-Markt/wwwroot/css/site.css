@@ -37,13 +37,37 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    text-decoration: none
 }
-
+.productfoto {
+    width: 90%;
+    margin-top: 20px;
+    text-decoration: none
+}
+.productfotodetails{
+    width: 100%;
+}
+.containerdetail {
+    align-content: center;
+    margin-top: 10%;
+}
+.kaas {
+    
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.myrow {
+    text-decoration: none;
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 .footer {
   position: absolute;

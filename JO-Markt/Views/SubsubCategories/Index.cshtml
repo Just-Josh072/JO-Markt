@@ -1,0 +1,58 @@
+﻿@model IEnumerable<JOMarkt.Models.SubsubCategory>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>
+    <a asp-action="LoadXMLCategories">load cat</a>
+</p>
+<button onclick="scrollWin()">beneed</button>
+<br>
+<br>
+
+<script>
+    function scrollWin() {
+        window.scrollBy(0, 10000);
+    }
+</script>
+<script>
+    function scrollWin2() {
+        window.scrollBy(0, -10000);
+    }
+</script>
+<table class="table">
+
+    <tbody>
+        <ul id="myRow" class="row justify-content-start">
+            @foreach (var item in Model)
+            {
+
+                <li class="collum" style="list-style-type:none;">
+                    <a asp-action="Subcategories" style="text-decoration: none;">
+                        <div class="card" id="catcard" style="width: 18rem;">
+                            <div style="width:100%; text-align:center;">
+                                <img class="productfoto" style="margin-top:20px;" src="~/Images/Cat/@item.Name ">
+
+                            </div>
+                            <div class="card-body">
+                                <p class="producttitel" style="color:black;">
+                                    <br />
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </p>
+
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            }
+        </ul>
+    </tbody>
+</table>
+<button onclick="scrollWin2()">om^^</button>
