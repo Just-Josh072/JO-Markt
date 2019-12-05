@@ -12,18 +12,23 @@
     <hr />
     <dl class="row">
         <div class="card" id="catcard" style="width: 18rem;">
-           
+
             <div class="card-body">
                 <p class="producttitel" style="color:black;">
                     <br />
-                    @Html.DisplayFor(modelItem => Model.Name)
+                    @Html.DisplayNameFor(model => model.Name)
                 </p>
-                @Html.DisplayFor(modelItem => Model.subcategories)
+
+                @foreach (var item in Model.Categories)
+                {
+                    @Html.DisplayFor(modelItem => item.subcategory)
+
+                }
             </div>
         </div>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.CategorieId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
