@@ -30,19 +30,20 @@ namespace JO_Markt.Controllers
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var categorie = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategorieId == id);
-            if (categorie == null)
+            var subcatogries = _context.SubCategory
+               .Where(sc =>sc.Category.CategorieId == id);
+            if (subcatogries == null)
             {
                 return NotFound();
             }
 
-            return View(categorie);
+            return View(subcatogries);
         }
 
         // GET: Categories/Create
