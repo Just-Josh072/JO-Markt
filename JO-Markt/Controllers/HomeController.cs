@@ -30,7 +30,7 @@ namespace Coma_Supermarkt.Controllers
         {
             Categories categories = new Categories();
             categories.categorie = _context.Category.ToList();
-            categories.subcategory = _context.subCategory.ToList();
+            categories.subcategory = _context.SubCategory.ToList();
             categories.subsubcategory = _context.SubsubCategory.ToList();
             return View(categories);
         }
@@ -39,7 +39,7 @@ namespace Coma_Supermarkt.Controllers
         {
             Categories categories = new Categories();
             categories.categorie = _context.Category.ToList();
-            categories.subcategory = _context.subCategory.ToList();
+            categories.subcategory = _context.SubCategory.ToList();
             categories.subsubcategory = _context.SubsubCategory.ToList();
             return View(categories);
         }
@@ -48,7 +48,7 @@ namespace Coma_Supermarkt.Controllers
         {
             Categories categories = new Categories();
             categories.categorie = _context.Category.ToList();
-            categories.subcategory = _context.subCategory.ToList();
+            categories.subcategory = _context.SubCategory.ToList();
             categories.subsubcategory = _context.SubsubCategory.ToList();
             return View(categories);
         }
