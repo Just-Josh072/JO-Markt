@@ -7,19 +7,18 @@
     <RootNamespace>JOMarkt</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Areas\admin\**" />
+    <Content Remove="Areas\admin\**" />
+    <EmbeddedResource Remove="Areas\admin\**" />
+    <None Remove="Areas\admin\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Areas\admin\Controllers\" />
-    <Folder Include="Areas\admin\Data\" />
-    <Folder Include="Areas\admin\Models\" />
-    <Folder Include="Areas\admin\Views\" />
   </ItemGroup>
 
 </Project>
