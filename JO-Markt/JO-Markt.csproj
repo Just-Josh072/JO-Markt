@@ -8,10 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\admin\**" />
-    <Content Remove="Areas\admin\**" />
-    <EmbeddedResource Remove="Areas\admin\**" />
-    <None Remove="Areas\admin\**" />
+    <None Include="Areas\admin\Views\Home\Index.cshtml" />
+    <None Include="Areas\admin\Views\Shared\_Layout.cshtml" />
+    <None Include="Areas\admin\Views\Shared\_MainMenu.cshtml" />
+    <None Include="Areas\admin\Views\_ViewImports.cshtml" />
+    <None Include="Areas\admin\Views\_ViewStart.cshtml" />
   </ItemGroup>
 
 
@@ -19,6 +20,11 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Areas\admin\Models\" />
   </ItemGroup>
 
 </Project>
