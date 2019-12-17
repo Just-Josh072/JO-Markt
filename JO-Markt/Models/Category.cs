@@ -12,10 +12,12 @@ namespace JOMarkt.Models
         [Key]
         public int CategorieId { get; set; }
         public string Name { get; set; }
-        [NotMapped]
+   
+       // public int ProductId { get; set; }
         public ICollection<SubCategory> subcategories { get; set; }
-        public ICollection<SubsubCategory> subsubcategories { get; set; }
-        public ICollection<Categories> Categories { get; set; }
+      //  public ICollection<SubsubCategory> subsubcategories { get; set; }
+       // public ICollection<Categories> Categories { get; set; }
+        public ICollection<Product> Product { get; set; }
         public string Image { get; set; }
     }
 }

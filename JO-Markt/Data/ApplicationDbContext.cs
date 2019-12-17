@@ -14,6 +14,23 @@ namespace JOMarkt.Data
             : base(options)
         {
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+       
+            builder.Entity<Product>().
+                HasOne(p => p.Category).
+                WithMany(c => c.Product).
+                HasForeignKey(p => p.CategoryId).
+                OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Product>().
+            HasOne(p => p.Subcategory).
+            WithMany(c => c.Products).
+            HasForeignKey(p => p.SubcategoryId).
+            OnDelete(DeleteBehavior.Restrict);
+            base.OnModelCreating(builder);
+
+        }
         public DbSet<JOMarkt.Models.Product> Product { get; set; }
         public DbSet<JOMarkt.Models.Category> Category { get; set; }
         public DbSet<JOMarkt.Models.SubCategory> SubCategory { get; set; }
@@ -21,6 +38,6 @@ namespace JOMarkt.Data
         public DbSet<JOMarkt.Models.articles> articles { get; set; }
         public DbSet<Promotions> Promotions { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
-      
+
     }
 }

@@ -7,6 +7,17 @@
     <RootNamespace>JOMarkt</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20191213104022_productdingclassaangepast2.cs" />
+    <Compile Remove="Data\Migrations\20191213104022_productdingclassaangepast2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191213104224_kazen.cs" />
+    <Compile Remove="Data\Migrations\20191213104224_kazen.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191217101942_modeldingV3.cs" />
+    <Compile Remove="Data\Migrations\20191217101942_modeldingV3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191217103229_modeldingV4.cs" />
+    <Compile Remove="Data\Migrations\20191217103229_modeldingV4.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -20,6 +31,7 @@
     <Folder Include="Areas\admin\Data\" />
     <Folder Include="Areas\admin\Models\" />
     <Folder Include="Areas\admin\Views\" />
+    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>

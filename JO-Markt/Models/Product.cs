@@ -12,6 +12,7 @@ namespace JOMarkt.Models
 {
     public class Product
     {
+        [Key]
         public int Id { get; set; }
 
         public string EAN { get; set; }
@@ -23,10 +24,13 @@ namespace JOMarkt.Models
         public string Image { get; set; }
         public string Weight { get; set; }
         public double Price { get; set; }
-        public string Category { get; set; }
-        public string Subcategory { get; set; }
-   
-        public string Subsubcategory { get; set; }
+        //[ForeignKey("CategoryId")]
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+       // [ForeignKey("SubcategoryId")]
+        public int SubcategoryId { get; set; }
+        public SubCategory Subcategory { get; set; }
+      //  public string Subsubcategory { get; set; }
        
     }
 }

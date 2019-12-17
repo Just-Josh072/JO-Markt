@@ -30,13 +30,14 @@ namespace JO_Markt.Controllers
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var product = _context.Product
+               .Where(sc => sc.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -56,6 +57,18 @@ namespace JO_Markt.Controllers
 
             return View(await products.ToListAsync());
         }
+        public async Task<IActionResult> detailss(string searchString)
+        {
+            var products = from m in _context.Product
+                           select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(await products.ToListAsync());
+        }
         public async Task<IActionResult> Detailpagina(int? id)
         {
             MultipleProducts multipleProducts = new MultipleProducts();
@@ -64,29 +77,29 @@ namespace JO_Markt.Controllers
                 return NotFound();
             }
 
-            var products = await _context.Product
+            var product = await _context.Product
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            List<Product> product = _context.Product.Where(w => w.Id == id).ToList();
-            List<Product> Related = _context.Product.Where(w => w.Subcategory == products.Subcategory).ToList();
-            List<Product> RelatedCategory = _context.Product.Where(w => w.Category == products.Category).ToList();
+           
+           // List<Product> Related = _context.Product.Where(w => w.Subcategory == product.Subcategory).ToList();
+            List<Product> RelatedCategory = _context.Product.Where(w => w.Category == product.Category).ToList();
             List<Product> RandomRelated = new List<Product>();
             List<Product> RandomRelatedCategory = new List<Product>();
 
             int RelatedItems = 0;
-            if (Related.Count <= 3)
-            {
-                RelatedItems = Related.Count;
-            }
-            else
-            {
-                RelatedItems = 4;
-            }
+            //if (Related.Count <= 3)
+            //{
+            //    RelatedItems = Related.Count;
+            //}
+            //else
+            //{
+            //    RelatedItems = 4;
+            //}
 
 
             List<int> number = new List<int>();
             bool NumberCheck = false;
-            int check = products.Id;
+            int check = product.Id;
             number.Add(check);
             //products.LoadProductAndRelated(RelatedItems, NumberCheck, Related, RandomRelated, number);
             //products.LoadProductCategory(RelatedItems, NumberCheck, RelatedCategory, RandomRelatedCategory, number);
@@ -95,15 +108,15 @@ namespace JO_Markt.Controllers
             multipleProducts.RelatedProducts = RandomRelated;
             multipleProducts.RelatedCategory = RandomRelatedCategory;
 
-            if (products == null)
+            if (product == null)
             {
                 return NotFound();
             }
 
-            foreach (var item in Related)
-            {
-                Console.WriteLine("Id : " + item.Id);
-            }
+            //foreach (var item in Related)
+            //{
+            //    Console.WriteLine("Id : " + item.Id);
+            //}
 
             Console.WriteLine("Foreach " + number.Count);
             foreach (var item in number)
@@ -226,8 +239,11 @@ namespace JO_Markt.Controllers
 
         public async Task<IActionResult> LoadXML()
         {
-            XElement xelement = XElement.Load("http://supermaco.starwave.nl/api/products");
+            XElement xelement = XElement.Load("https://supermaco.starwave.nl/api/products");
             IEnumerable<XElement> products = xelement.Elements();
+
+            var subcategories = _context.SubCategory.ToList();
+            var categories = _context.Category.ToList();
 
             foreach (var product in products)
             {
@@ -241,9 +257,10 @@ namespace JO_Markt.Controllers
                 p.Weight = (product.Element("Weight").Value);
                 p.Price = Convert.ToDouble(product.Element("Price").Value,CultureInfo.InvariantCulture);
 
-                p.Category = (product.Element("Category").Value);
-                p.Subcategory = (product.Element("Subcategory").Value);
-                p.Subsubcategory = (product.Element("Subsubcategory").Value);
+                p.Category = (categories.FirstOrDefault(sc => sc.Name == product.Element("Category").Value.Trim()));
+                p.Subcategory = (subcategories.FirstOrDefault(sc => sc.Name == product.Element("Subcategory").Value.Trim()));
+             //   p.Subcategory = (product.Element("Subcategory").Value);
+             //   p.Subsubcategory = (product.Element("Subsubcategory").Value);
 
 
                 _context.Add(p);
@@ -251,6 +268,13 @@ namespace JO_Markt.Controllers
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult DeleteData(string table)
+        {
+            table = "Products";
+            _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [" + table + "]");
+            return RedirectToAction("Index");
         }
     }
 }
