@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace JOMarkt.Data.Migrations
+namespace JOMarkt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191116132325_test2")]
-    partial class test2
+    [Migration("20191217103355_correct")]
+    partial class correct
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,11 +21,88 @@ namespace JOMarkt.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("JOMarkt.Models.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("Achternaam");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("Emailadres");
+
+                    b.Property<string>("Geboortedatum");
+
+                    b.Property<string>("Geslacht");
+
+                    b.Property<double>("Huisnummer");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("Postcode");
+
+                    b.Property<string>("Role");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<string>("Straat");
+
+                    b.Property<int>("Telefoonnummer");
+
+                    b.Property<string>("Toevoeging");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("Voornaam");
+
+                    b.Property<string>("Wachtwoord");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+                });
+
             modelBuilder.Entity("JOMarkt.Models.Category", b =>
                 {
                     b.Property<int>("CategorieId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Image");
 
                     b.Property<string>("Name");
 
@@ -42,7 +119,7 @@ namespace JOMarkt.Data.Migrations
 
                     b.Property<string>("Brand");
 
-                    b.Property<string>("Category");
+                    b.Property<int>("CategoryId");
 
                     b.Property<string>("EAN");
 
@@ -54,13 +131,17 @@ namespace JOMarkt.Data.Migrations
 
                     b.Property<string>("Shortdescription");
 
-                    b.Property<string>("Subcategory");
+                    b.Property<int>("SubcategoryId");
 
                     b.Property<string>("Title");
 
                     b.Property<string>("Weight");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("SubcategoryId");
 
                     b.ToTable("Product");
                 });
@@ -90,15 +171,17 @@ namespace JOMarkt.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryCategorieId");
+                    b.Property<int>("CategoryId");
+
+                    b.Property<string>("Image");
 
                     b.Property<string>("Name");
 
                     b.HasKey("SubcategoryId");
 
-                    b.HasIndex("CategoryCategorieId");
+                    b.HasIndex("CategoryId");
 
-                    b.ToTable("subCategory");
+                    b.ToTable("SubCategory");
                 });
 
             modelBuilder.Entity("JOMarkt.Models.SubsubCategory", b =>
@@ -108,6 +191,8 @@ namespace JOMarkt.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("CategorieId");
+
+                    b.Property<string>("Image");
 
                     b.Property<string>("Name");
 
@@ -120,6 +205,29 @@ namespace JOMarkt.Data.Migrations
                     b.HasIndex("SubcategoryId");
 
                     b.ToTable("SubsubCategory");
+                });
+
+            modelBuilder.Entity("JOMarkt.Models.articles", b =>
+                {
+                    b.Property<int>("articlesId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content");
+
+                    b.Property<bool>("IsVisible");
+
+                    b.Property<string>("Publisher");
+
+                    b.Property<DateTime>("PublisherDate");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("image");
+
+                    b.HasKey("articlesId");
+
+                    b.ToTable("articles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -164,57 +272,6 @@ namespace JOMarkt.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -287,17 +344,31 @@ namespace JOMarkt.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("JOMarkt.Models.Product", b =>
+                {
+                    b.HasOne("JOMarkt.Models.Category", "Category")
+                        .WithMany("Product")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("JOMarkt.Models.SubCategory", "Subcategory")
+                        .WithMany("Products")
+                        .HasForeignKey("SubcategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("JOMarkt.Models.SubCategory", b =>
                 {
                     b.HasOne("JOMarkt.Models.Category", "Category")
                         .WithMany("subcategories")
-                        .HasForeignKey("CategoryCategorieId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("JOMarkt.Models.SubsubCategory", b =>
                 {
                     b.HasOne("JOMarkt.Models.Category", "Categorie")
-                        .WithMany("subsubcategories")
+                        .WithMany()
                         .HasForeignKey("CategorieId");
 
                     b.HasOne("JOMarkt.Models.SubCategory", "Subcategory")
@@ -315,7 +386,7 @@ namespace JOMarkt.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("JOMarkt.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -323,7 +394,7 @@ namespace JOMarkt.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("JOMarkt.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -336,7 +407,7 @@ namespace JOMarkt.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("JOMarkt.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -344,7 +415,7 @@ namespace JOMarkt.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("JOMarkt.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

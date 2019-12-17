@@ -8,11 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Areas\admin\Views\Home\Index.cshtml" />
-    <None Include="Areas\admin\Views\Shared\_Layout.cshtml" />
-    <None Include="Areas\admin\Views\Shared\_MainMenu.cshtml" />
-    <None Include="Areas\admin\Views\_ViewImports.cshtml" />
-    <None Include="Areas\admin\Views\_ViewStart.cshtml" />
+    <Compile Remove="Data\Migrations\20191213104022_productdingclassaangepast2.cs" />
+    <Compile Remove="Data\Migrations\20191213104022_productdingclassaangepast2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191213104224_kazen.cs" />
+    <Compile Remove="Data\Migrations\20191213104224_kazen.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191217101942_modeldingV3.cs" />
+    <Compile Remove="Data\Migrations\20191217101942_modeldingV3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191217103229_modeldingV4.cs" />
+    <Compile Remove="Data\Migrations\20191217103229_modeldingV4.Designer.cs" />
   </ItemGroup>
 
 
@@ -24,7 +27,11 @@
 
 
   <ItemGroup>
+    <Folder Include="Areas\admin\Controllers\" />
+    <Folder Include="Areas\admin\Data\" />
     <Folder Include="Areas\admin\Models\" />
+    <Folder Include="Areas\admin\Views\" />
+    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>

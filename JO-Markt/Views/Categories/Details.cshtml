@@ -1,4 +1,4 @@
-﻿@model IEnumerable<JOMarkt.Models.SubCategory>
+﻿@model JOMarkt.Models.Category
 
 @{
     ViewData["Title"] = "Details";
@@ -11,46 +11,69 @@
     <h4>Category</h4>
     <hr />
     @*<dl class="row">
-        <div class="card" id="catcard" style="width: 18rem;">
+            <div class="card" id="catcard" style="width: 18rem;">
 
-            <div class="card-body">
-                <p class="producttitel" style="color:black;">
-                    <br />
-                    @Html.DisplayFor(model => model.Name)
-                </p>
+                <div class="card-body">
+                    <p class="producttitel" style="color:black;">
+                        <br />
+                        @Html.DisplayFor(model => model.Name)
+                    </p>
 
-                @foreach (var item in Model)
-                {
-                    <a>@Html.DisplayFor(ModelItem => Model.subcategories)</a>
-                    <a>SUB</a>
-                }
+                    @foreach (var item in Model)
+                    {
+                        <a>@Html.DisplayFor(ModelItem => Model.subcategories)</a>
+                        <a>SUB</a>
+                    }
+                </div>
             </div>
-        </div>
-    </dl>*@
+        </dl>*@
 </div>
 
 
-@foreach (var item in Model)
+@foreach (var item in Model.subcategories)
 {
 
     <li class="collum" style="list-style-type:none;">
-        
+
+        <div class="card" id="catcard" style="width: 18rem;">
+            <div style="width:100%; text-align:center;">
+
+
+            </div>
+            <div class="card-body">
+                <p class="producttitel" style="color:black;">
+                    <br />
+
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Name)
+                </p>
+
+            </div>
+        </div>
+    </li>
+    @foreach (var product in item.Products)
+    {
+
+        <li class="collum" style="list-style-type:none;">
+
             <div class="card" id="catcard" style="width: 18rem;">
                 <div style="width:100%; text-align:center;">
-                    
+
 
                 </div>
                 <div class="card-body">
                     <p class="producttitel" style="color:black;">
                         <br />
-                       
+
                         <br />
-                        @Html.DisplayFor(modelItem => item.Name)
+                        @Html.DisplayFor(modelItem => product.Title)
+                        <img class="productfoto" style="margin-top:20px; width:99%;" src="@product.Image">
                     </p>
 
                 </div>
             </div>
-    </li>
+        </li>
+    }
 }
 
 <div>

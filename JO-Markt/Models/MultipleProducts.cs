@@ -8,7 +8,7 @@ namespace JOMarkt.Models
 {
     public class MultipleProducts
     {
-        public List<Product> Product { get; set; }
+        public Product Product { get; set; }
         public List<Product> RelatedProducts { get; set; }
         public List<Product> RelatedCategory { get; set; }
         public List<CartItemViewModel> CartItems { get; set; }
