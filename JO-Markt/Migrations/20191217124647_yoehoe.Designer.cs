@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JOMarkt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191217103355_correct")]
-    partial class correct
+    [Migration("20191217124647_yoehoe")]
+    partial class yoehoe
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
