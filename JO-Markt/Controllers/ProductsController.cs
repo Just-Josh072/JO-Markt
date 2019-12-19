@@ -270,11 +270,11 @@ namespace JO_Markt.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult DeleteData(string table)
-        {
-            table = "Products";
-            _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [" + table + "]");
-            return RedirectToAction("Index");
-        }
+        //public IActionResult DeleteData(string table)
+        //{
+        //    table = "Products";
+        //    _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [" + table + "]");
+        //    return RedirectToAction("Index");
+        //}
     }
 }

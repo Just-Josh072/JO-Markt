@@ -1,4 +1,4 @@
-﻿@model IEnumerable<JOMarkt.Models.Product>
+﻿@model IEnumerable<JOMarkt.Models.Promotions>
 @{
     ViewData["Title"] = "KAAs";
 }
@@ -18,14 +18,14 @@
     @foreach (var item in Model)
     {
         <div class="col-md-3" style="float:left;">
-            <a asp-controller="product" asp-action="Detailpagina" asp-route-id="@item.Id">
+            <a asp-controller="product" asp-action="Detailpagina" asp-route-id="@item.Discount_Id">
                 <div class="card" style="width: 18rem;">
                     <div style="width:100%; text-align:center;">
                         <img class="productfoto" src="@item.Image" alt="Card image cap">
                     </div>
                     <div class="card-body">
-                        <p class="card-text">@item.Shortdescription</p>
-                        <p class="card-text">€@item.Price</p>
+                        <p class="card-text">@item.Title</p>
+                        <p class="card-text">€@item.DiscountPrice</p>
                     </div>
                 </div>
             </a>
@@ -33,19 +33,7 @@
     }
 </div>
 fdasjfakd
-@foreach (var item in Model)
-{
-    <div class="col-md-3" style="float:left;">
-        <a asp-controller="product" asp-action="Detailpagina" asp-route-id="@item.Id">
-            <div class="card" style="width: 18rem;">
-                <div style="width:100%; text-align:center;">
-                    <img class="productfoto" src="@item.Image" alt="Card image cap">
-                </div>
-                <div class="card-body">
-                    <p class="card-text">@item.Shortdescription</p>
-                    <p class="card-text">€@item.Price</p>
-                </div>
-            </div>
-        </a>
-    </div>
-}
+<p>
+    <a asp-action="LoadXMLPromo">load promo</a>
+</p>
+

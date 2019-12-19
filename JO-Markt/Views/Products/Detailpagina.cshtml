@@ -15,9 +15,9 @@
             <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
             <a asp-action="Index" asp-controller="Products">Producten  >  </a>
             <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
-            <a asp-action="Index" asp-controller="Categories">@Html.DisplayFor(m => m.Product.Category) </a>
+            <a asp-action="Index" asp-controller="Categories">@Html.DisplayFor(m => m.Category.Name) Categorieën </a>
             <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
-            <a asp-action="Index" asp-controller="SubCategories">@Html.DisplayFor(m => m.Product.Subcategory)</a>
+            <a asp-action="Index" asp-controller="SubCategories">@Html.DisplayFor(m => m.Product.Subcategory) Subcategorieën</a>
             <i class="fa fa-angle-right" style="margin-left:5px;margin-right:5px;"></i>
            @*// <a asp-action="Index" asp-controller="SubsubCategories">@Html.DisplayFor(m => m.Product.Subsubcategory)</a>*@
 
