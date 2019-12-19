@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JOMarkt.Migrations
 {
-    public partial class correct : Migration
+    public partial class yoehoe : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

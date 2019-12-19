@@ -40,6 +40,10 @@ namespace JO_Markt.Controllers
                 uvm.Voornaam = user.Voornaam;
                 uvm.Geboortedatum = user.Geboortedatum;
                 uvm.Achternaam = user.Achternaam;
+                uvm.Straat = user.Straat;
+                uvm.Postcode = user.Postcode;
+                uvm.Geslacht = user.Geslacht;
+                uvm.Role = user.Role;
 
                 uvm.Id = user.Id;
 
