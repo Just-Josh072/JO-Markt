@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
-namespace Coma_Supermarkt.Controllers
+namespace JOMarkt.Controllers
 {
     public class HomeController : Controller
     {
@@ -26,45 +26,40 @@ namespace Coma_Supermarkt.Controllers
         }
         //categorien inladen method moet nog even aangemaakt worden, nu wordt telkens hetzelfde hergebruikt, excuus - Omar <3
 
-        public IActionResult CategorieList()
-        {
-            Categories categories = new Categories();
-            categories.categorie = _context.Category.ToList();
-            categories.subcategory = _context.subCategory.ToList();
-            categories.subsubcategory = _context.SubsubCategory.ToList();
-            return View(categories);
-        }
-        //categorie pagina voor klanten
-        public IActionResult Categories()
-        {
-            Categories categories = new Categories();
-            categories.categorie = _context.Category.ToList();
-            categories.subcategory = _context.subCategory.ToList();
-            categories.subsubcategory = _context.SubsubCategory.ToList();
-            return View(categories);
-        }
-        //subcategorie pagina voor klanten
-        public IActionResult Subcategories()
-        {
-            Categories categories = new Categories();
-            categories.categorie = _context.Category.ToList();
-            categories.subcategory = _context.subCategory.ToList();
-            categories.subsubcategory = _context.SubsubCategory.ToList();
-            return View(categories);
-        }
+        //public IActionResult CategorieList()
+        //{
+        //    Categories categories = new Categories();
+        //    categories.categorie = _context.Category.ToList();
+        //    categories.subcategory = _context.SubCategory.ToList();
+        //    categories.subsubcategory = _context.SubsubCategory.ToList();
+        //    return View(categories);
+        //}
+        ////categorie pagina voor klanten
+        //public IActionResult Categories()
+        //{
+        //    Categories categories = new Categories();
+        //    categories.categorie = _context.Category.ToList();
+        //    categories.subcategory = _context.SubCategory.ToList();
+        //    categories.subsubcategory = _context.SubsubCategory.ToList();
+        //    return View(categories);
+        //}
+        ////subcategorie pagina voor klanten
+        //public IActionResult Subcategories()
+        //{
+        //    Categories categories = new Categories();
+        //    categories.categorie = _context.Category.ToList();
+        //    categories.subcategory = _context.SubCategory.ToList();
+        //    categories.subsubcategory = _context.SubsubCategory.ToList();
+        //    return View(categories);
+        //}
 
         public IActionResult Index()
         {
-            List<Product> producten = _context.Product.ToList();
-            List<Promotions> promotions = _context.Promotions.ToList();
+          
             List<Product> model = new List<Product>();
            
 
-            foreach (var item in promotions)
-            {
-                Product product = _context.Product.Where(w => w.EAN == item.EAN).First();
-                model.Add(product);
-            }
+           
 
             return View(model);
         }

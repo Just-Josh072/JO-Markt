@@ -22,7 +22,7 @@ namespace JO_Markt.Controllers
         // GET: SubCategories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.subCategory.ToListAsync());
+            return View(await _context.SubCategory.ToListAsync());
         }
 
         // GET: SubCategories/Details/5
@@ -33,7 +33,7 @@ namespace JO_Markt.Controllers
                 return NotFound();
             }
 
-            var subCategory = await _context.subCategory
+            var subCategory = await _context.SubCategory
                 .FirstOrDefaultAsync(m => m.SubcategoryId == id);
             if (subCategory == null)
             {
@@ -73,7 +73,7 @@ namespace JO_Markt.Controllers
                 return NotFound();
             }
 
-            var subCategory = await _context.subCategory.FindAsync(id);
+            var subCategory = await _context.SubCategory.FindAsync(id);
             if (subCategory == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace JO_Markt.Controllers
                 return NotFound();
             }
 
-            var subCategory = await _context.subCategory
+            var subCategory = await _context.SubCategory
                 .FirstOrDefaultAsync(m => m.SubcategoryId == id);
             if (subCategory == null)
             {
@@ -139,15 +139,15 @@ namespace JO_Markt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var subCategory = await _context.subCategory.FindAsync(id);
-            _context.subCategory.Remove(subCategory);
+            var subCategory = await _context.SubCategory.FindAsync(id);
+            _context.SubCategory.Remove(subCategory);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SubCategoryExists(int id)
         {
-            return _context.subCategory.Any(e => e.SubcategoryId == id);
+            return _context.SubCategory.Any(e => e.SubcategoryId == id);
         }
     }
 }

@@ -14,7 +14,7 @@
 <p>
     <a asp-action="LoadXMLCategories">load cat</a>
 </p>
-<button onclick="scrollWin()">beneed</button>
+
 <br>
 <br>
 
@@ -39,7 +39,8 @@ function scrollWin() {
                     <a asp-action="Details" asp-route-id="@item.CategorieId" style="text-decoration: none;">
                         <div class="card" id="catcard" style="width: 18rem;">
                             <div style="width:100%; text-align:center;">
-                                <img class="productfoto" style="margin-top:20px;" src="(@item.Name).jpg">
+                                <img class="productfoto" style="margin-top:20px;" src="~/Images/Cat/@item.Name ">
+                               
                             </div>
                             <div class="card-body">
                                 <p class="producttitel" style="color:black;">
@@ -55,4 +56,3 @@ function scrollWin() {
         </ul>
     </tbody>
 </table>
-<button onclick="scrollWin2()">om^^</button>

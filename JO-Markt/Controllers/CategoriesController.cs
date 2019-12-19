@@ -24,25 +24,26 @@ namespace JO_Markt.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.Include(c => c.Categories).ToListAsync());
+            return View(await _context.Category.ToListAsync());
         }
 
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var categorie = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategorieId == id);
-            if (categorie == null)
+            var catogrey = _context.Category.Include(p => p.subcategories).ThenInclude(c => c.Products)
+               .FirstOrDefault(sc =>sc.CategorieId == id);
+            if (catogrey == null)
             {
                 return NotFound();
             }
 
-            return View(categorie);
+            return View(catogrey);
         }
 
         // GET: Categories/Create
@@ -163,7 +164,7 @@ namespace JO_Markt.Controllers
             for (int i = 0; i < elemList.Count; i++)
             {
                 Category c = new Category();
-                c.Name = (elemList[i].SelectSingleNode("./Name").InnerXml);
+                c.Name = (elemList[i].SelectSingleNode("./Name").InnerXml).Trim();
                 //Console.WriteLine("Name: " + elemList[i].SelectSingleNode("./Name").InnerXml);
 
                 XmlNodeList subcats = elemList[i].SelectNodes("./Subcategory");
@@ -171,7 +172,7 @@ namespace JO_Markt.Controllers
                 for (int j = 0; j < subcats.Count; j++)
                 {
                     SubCategory sc = new SubCategory();
-                    sc.Name = (subcats[j].SelectSingleNode("./Name").InnerXml);
+                    sc.Name = (subcats[j].SelectSingleNode("./Name").InnerXml).Trim();
                     // Console.WriteLine("--sub: " + subcats[j].SelectSingleNode("./Name").InnerXml);
                     sc.Category = c;
 
@@ -180,7 +181,7 @@ namespace JO_Markt.Controllers
                     {
 
                         SubsubCategory ssc = new SubsubCategory();
-                        ssc.Name = (subsubcats[w].SelectSingleNode("./Name").InnerXml);
+                        ssc.Name = (subsubcats[w].SelectSingleNode("./Name").InnerXml).Trim();
                         ssc.Subcategory = sc;
                         // Console.WriteLine("--subsub: " + subsubcats[w].SelectSingleNode("./Name").InnerXml);
 
