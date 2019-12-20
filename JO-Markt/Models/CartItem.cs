@@ -7,7 +7,8 @@ namespace JOMarkt.Models
 {
     public class CartItem
     {
-        public int Amount { get; set; }
         public int ProductId { get; set; }
+        public int Amount { get; set; }
+        
     }
 }
