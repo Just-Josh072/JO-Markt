@@ -82,7 +82,7 @@ namespace JO_Markt.Controllers
 
            
            // List<Product> Related = _context.Product.Where(w => w.Subcategory == product.Subcategory).ToList();
-           // List<Product> RelatedCategory = _context.Product.Where(w => w.Category == product.Category).ToList();
+            //List<Product> RelatedCategory = _context.Product.Where(w => w.Category == product.Category).ToList();
             List<Product> RandomRelated = new List<Product>();
             List<Product> RandomRelatedCategory = new List<Product>();
 
@@ -270,11 +270,11 @@ namespace JO_Markt.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult DeleteData(string table)
-        {
-            table = "Products";
-            _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [" + table + "]");
-            return RedirectToAction("Index");
-        }
+        //public IActionResult DeleteData(string table)
+        //{
+        //    table = "Products";
+        //    _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [" + table + "]");
+        //    return RedirectToAction("Index");
+        //}
     }
 }
