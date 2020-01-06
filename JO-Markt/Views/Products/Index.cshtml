@@ -42,7 +42,7 @@
                                 @Html.DisplayFor(modelItem => item.Title)
                             </div>
                            <p class="price">&euro;@Html.DisplayFor(modelItem => item.Price)</p>
-                           <a class="btn btn-success btn-block" href="/Products/Detailpagina/1">In winkelwagen</a>
+                           <a asp-action="AddToCart" class="btn btn-success btn-block" asp-route-id="@item.Id">In winkelwagen</a>
                         </div>
 
                     </a>

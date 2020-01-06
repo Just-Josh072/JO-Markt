@@ -280,23 +280,52 @@ namespace JO_Markt.Controllers
             return RedirectToAction("Index");
         }
 
-        
 
+
+
+        //public IActionResult AddToCart(int id)
+        //{
+        //    List<CartItem> cart = new List<CartItem>();
+
+        //    string cartString = HttpContext.Session.GetString("cart");
+
+        //    if (cartString != null)
+        //        cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
+
+
+        //    CartItem item = new CartItem();
+        //    CartItem item2 = cart.Find(ci => ci.ProductId == id);
+
+        //    if (item2 != null)
+        //    {
+        //        item2.Amount++;
+        //    }
+        //    else
+        //    {
+        //        cart.Add(item);
+        //    }
+
+        //    cartString = JsonConvert.SerializeObject(cart);
+        //    HttpContext.Session.SetString("cart", cartString);
+
+        //    return RedirectToAction("index");
+        //}
 
         public IActionResult AddToCart(int id)
         {
             List<CartItem> cart = new List<CartItem>();
 
             string cartString = HttpContext.Session.GetString("cart");
-
             if (cartString != null)
-            {
                 cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
-            }
 
-            CartItem item = new CartItem();
+            CartItem item = new CartItem
+            {
+                Amount = 1,
+                ProductId = id
+
+            };
             CartItem item2 = cart.Find(c => c.ProductId == id);
-
             if (item2 != null)
             {
                 item2.Amount++;
@@ -309,17 +338,47 @@ namespace JO_Markt.Controllers
             cartString = JsonConvert.SerializeObject(cart);
             HttpContext.Session.SetString("cart", cartString);
 
-            return View("Index", _context.Product.ToList());
+            return RedirectToAction("index");
         }
 
+        //public IActionResult Cart()
+        //{
+        //    List<CartItem> cart = new List<CartItem>();
+
+        //    string cartString = HttpContext.Session.GetString("cart");
+
+        //    if (cartString != null)
+        //        cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
+
+        //    List<CartItemViewModel> cartvm = new List<CartItemViewModel>();
+
+        //    foreach (CartItem ci in cart)
+        //    {
+        //        CartItemViewModel civm = new CartItemViewModel();
+
+        //        civm.ProductId = ci.ProductId;
+        //        civm.Amount = ci.Amount;
+
+        //        Product p = _context.Product.Find(ci.ProductId);
+
+        //        civm.Name = p.Title;
+        //        civm.Price = p.Price;
+        //        civm.ImageUrl = p.Image;
+
+        //        cartvm.Add(civm);
+        //    }
+
+        //    return View(cartvm);
+
+        //}
         public IActionResult Cart()
         {
             List<CartItem> cart = new List<CartItem>();
 
             string cartString = HttpContext.Session.GetString("cart");
-            
             if (cartString != null)
                 cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
+
 
             List<CartItemViewModel> cartvm = new List<CartItemViewModel>();
 
@@ -339,8 +398,8 @@ namespace JO_Markt.Controllers
                 cartvm.Add(civm);
             }
 
-            return View(cartvm);
 
+            return View(cartvm);
         }
     }
 }
