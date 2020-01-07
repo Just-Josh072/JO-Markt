@@ -24,7 +24,14 @@ namespace JO_Markt.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+            List<CategoryViewModel> categories = _context.Category.Select(c => new CategoryViewModel
+            {
+                CategorieId = c.CategorieId,
+                Image = c.Product.First().Image,
+                Name = c.Name
+            }).ToList();
+            return View(categories);
+            //return View(await _context.Category.ToListAsync());
         }
 
         // GET: Categories/Details/5

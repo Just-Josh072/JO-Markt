@@ -591,8 +591,17 @@ pre code {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap:wrap;
-  margin-right: -10%;
-  margin-left: -10%;
+  margin-right: 0%;
+  margin-left: 10%;
+}
+
+.catcard {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -10%;
+    margin-left: -10%;
 }
 
 .no-gutters {
@@ -4584,6 +4593,21 @@ input[type="button"].btn-block {
   border-radius: 0.25rem;
 }
 
+.card1 {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: rgb(255, 50, 51);
+    background-clip: border-box;
+    border: 1px solid;
+    border-radius: 0.25rem;
+
+}
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -4603,10 +4627,26 @@ input[type="button"].btn-block {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1.25rem;
+  float: right;
+}
+.CardProduct {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    float: right;
+    flex-wrap: wrap;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.collum{
+
 }
 
 .card-title {
-  margin-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
 }
 
 .card-subtitle {
@@ -4702,7 +4742,8 @@ input[type="button"].btn-block {
 
 @media (min-width: 576px) {
   .card-deck {
-    -ms-flex-flow: row wrap;
+    -ms-flex-flow: 
+        wrap;
     flex-flow: row wrap;
     margin-right: -15px;
     margin-left: -15px;

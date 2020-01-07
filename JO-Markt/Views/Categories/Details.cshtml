@@ -10,15 +10,71 @@
 <div>
     <h4>Category</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
+    @*<dl class="row">
+            <div class="card" id="catcard" style="width: 18rem;">
+
+                <div class="card-body">
+                    <p class="producttitel" style="color:black;">
+                        <br />
+                        @Html.DisplayFor(model => model.Name)
+                    </p>
+
+                    @foreach (var item in Model)
+                    {
+                        <a>@Html.DisplayFor(ModelItem => Model.subcategories)</a>
+                        <a>SUB</a>
+                    }
+                </div>
+            </div>
+        </dl>*@
 </div>
+
+
+@foreach (var item in Model.subcategories)
+{
+
+    <li class="collum" style="list-style-type:none;">
+
+        <div class="card1" id="catcard" style="width: 100%;">
+            <div style="width:100%; text-align:center;">
+
+
+            </div>
+            <div class="card-body">
+                <p class="card-text" style="color:white;">
+                    <br />
+
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Name)
+                </p>
+
+            </div>
+        </div>
+    </li>
+    <div class="row">
+        @foreach (var product in item.Products)
+        {
+
+            // <li class="collum" style="list-style-type:none;">
+
+            <div class="card" style="width: 18rem;">
+
+                <div class="card">
+                    <p class="card" style="color:black;">
+                        <br />
+
+                        <br />
+                        @Html.DisplayFor(modelItem => product.Title)
+                        <img class="card-img" style=" width:90%;" src="@product.Image">
+                    </p>
+
+                </div>
+            </div>
+            //</li>
+        }
+    </div>
+}
+
 <div>
     <a asp-action="Edit" asp-route-id="">Edit</a> |
     <a asp-action="Index">Back to List</a>

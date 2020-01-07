@@ -1,4 +1,4 @@
-﻿@model IEnumerable<JOMarkt.Models.Category>
+﻿@model IEnumerable<JOMarkt.Models.CategoryViewModel>
 
 
 @{
@@ -8,9 +8,7 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <p>
     <a asp-action="LoadXMLCategories">load cat</a>
 </p>
@@ -39,7 +37,7 @@ function scrollWin() {
                     <a asp-action="Details" asp-route-id="@item.CategorieId" style="text-decoration: none;">
                         <div class="card" id="catcard" style="width: 18rem;">
                             <div style="width:100%; text-align:center;">
-                                <img class="productfoto" style="margin-top:20px;" src="~/Images/Cat/@item.Name ">
+                                <img class="productfoto" style="margin-top:20px;" src="@item.Image">
                                
                             </div>
                             <div class="card-body">
@@ -56,3 +54,4 @@ function scrollWin() {
         </ul>
     </tbody>
 </table>
+
