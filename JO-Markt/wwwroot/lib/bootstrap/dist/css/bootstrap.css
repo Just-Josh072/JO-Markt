@@ -2994,7 +2994,7 @@ fieldset:disabled a.btn {
 
 .btn-block {
   display: block;
-  width: 100%;
+  width: 200px;
 }
 
 .btn-block + .btn-block {
@@ -3004,7 +3004,7 @@ fieldset:disabled a.btn {
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
-  width: 100%;
+  width: 200px;
 }
 
 .fade {

@@ -32,5 +32,6 @@ namespace JOMarkt.Models
         public SubCategory Subcategory { get; set; }
       //  public string Subsubcategory { get; set; }
        
+
     }
 }

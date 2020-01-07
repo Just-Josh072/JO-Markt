@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,8 @@ using JOMarkt.Data;
 using JOMarkt.Models;
 using System.Xml.Linq;
 using System.Globalization;
+using Newtonsoft.Json;
+
 
 namespace JO_Markt.Controllers
 {
@@ -82,7 +85,7 @@ namespace JO_Markt.Controllers
 
            
            // List<Product> Related = _context.Product.Where(w => w.Subcategory == product.Subcategory).ToList();
-            //List<Product> RelatedCategory = _context.Product.Where(w => w.Category == product.Category).ToList();
+           // List<Product> RelatedCategory = _context.Product.Where(w => w.Category == product.Category).ToList();
             List<Product> RandomRelated = new List<Product>();
             List<Product> RandomRelatedCategory = new List<Product>();
 
@@ -270,11 +273,133 @@ namespace JO_Markt.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //public IActionResult DeleteData(string table)
+        public IActionResult DeleteData(string table)
+        {
+            table = "Products";
+            _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [" + table + "]");
+            return RedirectToAction("Index");
+        }
+
+
+
+
+        //public IActionResult AddToCart(int id)
         //{
-        //    table = "Products";
-        //    _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [" + table + "]");
-        //    return RedirectToAction("Index");
+        //    List<CartItem> cart = new List<CartItem>();
+
+        //    string cartString = HttpContext.Session.GetString("cart");
+
+        //    if (cartString != null)
+        //        cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
+
+
+        //    CartItem item = new CartItem();
+        //    CartItem item2 = cart.Find(ci => ci.ProductId == id);
+
+        //    if (item2 != null)
+        //    {
+        //        item2.Amount++;
+        //    }
+        //    else
+        //    {
+        //        cart.Add(item);
+        //    }
+
+        //    cartString = JsonConvert.SerializeObject(cart);
+        //    HttpContext.Session.SetString("cart", cartString);
+
+        //    return RedirectToAction("index");
         //}
+
+        public IActionResult AddToCart(int id)
+        {
+            List<CartItem> cart = new List<CartItem>();
+
+            string cartString = HttpContext.Session.GetString("cart");
+            if (cartString != null)
+                cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
+
+            CartItem item = new CartItem
+            {
+                Amount = 1,
+                ProductId = id
+
+            };
+            CartItem item2 = cart.Find(c => c.ProductId == id);
+            if (item2 != null)
+            {
+                item2.Amount++;
+            }
+            else
+            {
+                cart.Add(item);
+            }
+
+            cartString = JsonConvert.SerializeObject(cart);
+            HttpContext.Session.SetString("cart", cartString);
+
+            return RedirectToAction("index");
+        }
+
+        //public IActionResult Cart()
+        //{
+        //    List<CartItem> cart = new List<CartItem>();
+
+        //    string cartString = HttpContext.Session.GetString("cart");
+
+        //    if (cartString != null)
+        //        cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
+
+        //    List<CartItemViewModel> cartvm = new List<CartItemViewModel>();
+
+        //    foreach (CartItem ci in cart)
+        //    {
+        //        CartItemViewModel civm = new CartItemViewModel();
+
+        //        civm.ProductId = ci.ProductId;
+        //        civm.Amount = ci.Amount;
+
+        //        Product p = _context.Product.Find(ci.ProductId);
+
+        //        civm.Name = p.Title;
+        //        civm.Price = p.Price;
+        //        civm.ImageUrl = p.Image;
+
+        //        cartvm.Add(civm);
+        //    }
+
+        //    return View(cartvm);
+
+        //}
+        public IActionResult Cart()
+        {
+            List<CartItem> cart = new List<CartItem>();
+
+            string cartString = HttpContext.Session.GetString("cart");
+            if (cartString != null)
+                cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
+
+
+            List<CartItemViewModel> cartvm = new List<CartItemViewModel>();
+
+            foreach (CartItem ci in cart)
+            {
+                CartItemViewModel civm = new CartItemViewModel();
+
+                civm.ProductId = ci.ProductId;
+                civm.Amount = ci.Amount;
+
+                Product p = _context.Product.Find(ci.ProductId);
+
+                civm.Name = p.Title;
+                civm.Price = p.Price;
+                civm.ImageUrl = p.Image;
+
+                cartvm.Add(civm);
+            }
+
+
+            return View(cartvm);
+        }
     }
 }

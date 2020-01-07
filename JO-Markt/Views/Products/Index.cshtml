@@ -40,9 +40,9 @@
                                 <p class="producttitel">Merk: @Html.DisplayFor(modelItem => item.Brand)</p>
 
                                 @Html.DisplayFor(modelItem => item.Title)
-
                             </div>
-                            <p class="price">&euro;@Html.DisplayFor(modelItem => item.Price)</p>
+                           <p class="price">&euro;@Html.DisplayFor(modelItem => item.Price)</p>
+                           <a asp-action="AddToCart" class="btn btn-success btn-block" asp-route-id="@item.Id">In winkelwagen</a>
                         </div>
 
                     </a>

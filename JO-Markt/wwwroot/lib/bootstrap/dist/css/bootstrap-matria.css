@@ -239,6 +239,7 @@ button {
   border-radius: 0;
 }
 
+
 button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color;
@@ -3233,9 +3234,12 @@ fieldset:disabled a.btn {
   border-radius: 0.2rem;
 }
 
-.btn-block {
+
+
+.btn-block
+{
   display: block;
-  width: 100%;
+  width: 200px;
 }
 
 .btn-block + .btn-block {
@@ -3245,7 +3249,7 @@ fieldset:disabled a.btn {
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
-  width: 100%;
+  width: 200px;
 }
 
 .fade {
