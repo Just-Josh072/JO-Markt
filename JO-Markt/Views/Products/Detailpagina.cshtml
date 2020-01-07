@@ -51,7 +51,7 @@
                     </dd>
                     
                     <dd>
-                        <a asp-action="AddToCart" class="btn btn-success btn-block" >In winkelwagen</a>
+                        <a asp-action="AddToCart" class="btn btn-success btn-block" asp-route-id="@Model.Product.Id">In winkelwagen</a>
                     </dd>
                     
                     <dd class="col-sm-10">

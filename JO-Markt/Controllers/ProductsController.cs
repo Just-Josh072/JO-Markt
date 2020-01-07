@@ -391,7 +391,7 @@ namespace JO_Markt.Controllers
 
                 Product p = _context.Product.Find(ci.ProductId);
 
-                civm.Name = p.Title;
+                 civm.Name = p.Title;
                 civm.Price = p.Price;
                 civm.ImageUrl = p.Image;
 
