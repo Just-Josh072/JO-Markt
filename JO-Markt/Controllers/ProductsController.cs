@@ -401,5 +401,30 @@ namespace JO_Markt.Controllers
 
             return View(cartvm);
         }
+
+        public int RemoveFromCart(int id)
+        {
+            var ShoppingCartId = _context.Product.Single(
+                d => (d.Id == id)
+                && d.CategoryId == id);
+
+            int itemCount = 0;
+
+            if (ShoppingCartId != null)
+            {
+                if (ShoppingCartId.Quantity > 1)
+                {
+                    ShoppingCartId.Quantity--;
+                    itemCount = ShoppingCartId.Quantity;
+                }
+                else
+                {
+                    _context.Product.Remove(ShoppingCartId);
+                }
+                _context.SaveChanges();
+            }
+
+            return itemCount;
+        }
     }
 }
