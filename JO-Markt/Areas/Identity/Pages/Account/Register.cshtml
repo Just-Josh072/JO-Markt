@@ -1,64 +1,77 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Aanmelden";
+    ViewData["Footer"] = "no";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<div class="row">
-    <div class="col-md-4">
+<div class="registration reg-form">
+    <div class="col-md-4 col-md-contact">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
+            <h1 class="text-center">Nieuw hier?</h1>
+            <h5 class="text-center">Een profiel aanmaken is zo gebeurd.</h5>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Voornaam"></label>
-                <input asp-for="Input.Voornaam" class="form-control" />
-                <span asp-validation-for="Input.Voornaam" class="text-danger"></span>
-            </div>
+            <div class="col-form-1">
+                <div class="form-group gender-group">
+                    <div class="gender-form">
+                        <label asp-for="Input.Geslacht" class="gender-label">Dhr.</label>
+                        <input type="radio" asp-for="Input.Geslacht" value="Male" />
+                    </div>
+                    <div class="gender-form">
+                        <label asp-for="Input.Geslacht" class="gender-label">Mevr.</label>
+                        <input type="radio" asp-for="Input.Geslacht" value="Female" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Voornaam">Voornaam</label>
+                    <input asp-for="Input.Voornaam" class="form-control" />
+                    <label asp-for="Input.Achternaam">Achternaam</label>
+                    <input asp-for="Input.Achternaam" class="form-control" />
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Input.Achternaam"></label>
-                <input asp-for="Input.Achternaam" class="form-control" />
-                <span asp-validation-for="Input.Achternaam" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="Input.Straat">Straatnaam/ Bezorg Adress</label>
+                    <input asp-for="Input.Straat" class="form-control" />
+                    @*<label asp-for="Input.HouseNumber">Huisnummer</label>
+                    <input asp-for="Input.HouseNumber" class="form-control" />*@
+                    @*<label asp-for="Input.HouseNumberAddition">Toev.</label>
+                    <input asp-for="Input.HouseNumberAddition" class="form-control" />*@
+                </div>
+            </div>
+            <div class="col-form-1">
+
+                <div class="form-group">
+                    <label asp-for="Input.Postcode">Postcode</label>
+                    <input asp-for="Input.Postcode" class="form-control" />
+                    <label asp-for="Input.PhoneNumber">Telefoonnummer</label>
+                    <input asp-for="Input.PhoneNumber" class="form-control" />
+                    <label asp-for="Input.Geboortedatum">Geboortedatum</label>
+                    <input asp-for="Input.Geboortedatum" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Email">E-mail</label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password">Wachtwoord</label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword">Herhaal wachtwoord</label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Input.Geboortedatum"></label>
-                <input asp-for="Input.Geboortedatum" class="form-control" />
-                <span asp-validation-for="Input.Geboortedatum" class="text-danger"></span>
+                <button type="submit" class="btn btn-submit btn-primary ">Aanmelden</button>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.Geslacht"></label>
-                <input asp-for="Input.Geslacht" class="form-control" />
-                <span asp-validation-for="Input.Geslacht" class="text-danger"></span>
+            <div class="col-form-2">
+                <hr />
+                <p>Heeft u al een JO-Markt profiel? Hier kunt u <a class="" asp-page="/Account/Login">inloggen</a>.</p>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.Straat"></label>
-                <input asp-for="Input.Straat" class="form-control" />
-                <span asp-validation-for="Input.Straat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Postcode"></label>
-                <input asp-for="Input.Postcode" class="form-control" />
-                <span asp-validation-for="Input.Postcode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
 </div>
