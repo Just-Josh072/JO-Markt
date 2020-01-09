@@ -7,10 +7,12 @@
 
 
 
-<div>
-    <h4>Category</h4>
-    <hr />
-    @*<dl class="row">
+    <div>
+        <h4>Category @Html.DisplayFor(model => model.Name)</h4>
+
+        <img class="card-img" style="height:600px" src="@Model.Image">
+
+        @*<dl class="row">
             <div class="card" id="catcard" style="width: 18rem;">
 
                 <div class="card-body">
@@ -27,7 +29,9 @@
                 </div>
             </div>
         </dl>*@
-</div>
+
+
+    </div>
 
 
 @foreach (var item in Model.subcategories)
