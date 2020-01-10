@@ -170,76 +170,8 @@ namespace JO_Markt.Controllers
             return View(product);
         }
 
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,EAN,Title,Brand,Shortdescription,Fulldescription,Image,Weight,Price,Category,Subcategory")] Product product)
-        {
-            if (id != product.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(product);
-        }
-
-        // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
-
-        // POST: Products/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var product = await _context.Product.FindAsync(id);
-            _context.Product.Remove(product);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ProductExists(int id)
-        {
-            return _context.Product.Any(e => e.Id == id);
-        }
-
-
+       
+       
         public async Task<IActionResult> LoadXML()
         {
             XElement xelement = XElement.Load("https://supermaco.starwave.nl/api/products");
@@ -341,36 +273,7 @@ namespace JO_Markt.Controllers
             return RedirectToAction("index");
         }
 
-        //public IActionResult Cart()
-        //{
-        //    List<CartItem> cart = new List<CartItem>();
-
-        //    string cartString = HttpContext.Session.GetString("cart");
-
-        //    if (cartString != null)
-        //        cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
-
-        //    List<CartItemViewModel> cartvm = new List<CartItemViewModel>();
-
-        //    foreach (CartItem ci in cart)
-        //    {
-        //        CartItemViewModel civm = new CartItemViewModel();
-
-        //        civm.ProductId = ci.ProductId;
-        //        civm.Amount = ci.Amount;
-
-        //        Product p = _context.Product.Find(ci.ProductId);
-
-        //        civm.Name = p.Title;
-        //        civm.Price = p.Price;
-        //        civm.ImageUrl = p.Image;
-
-        //        cartvm.Add(civm);
-        //    }
-
-        //    return View(cartvm);
-
-        //}
+       
         public IActionResult Cart()
         {
             List<CartItem> cart = new List<CartItem>();
@@ -402,22 +305,22 @@ namespace JO_Markt.Controllers
             return View(cartvm);
         }
 
-        public ActionResult Remove(string id)
-        {
-            List<CartItem> cart = (List<CartItem>)Session["cart"];
-            int index = isExist(id);
-            cart.RemoveAt(index);
-            Session["cart"] = cart;
-            return RedirectToAction("Index");
-        }
 
-        private int isExist(string id)
+        public IActionResult Delete(int id)
         {
-            List<CartItem> cart = (List<CartItem>)Session["cart"];
-            for (int i = 0; i < cart.Count; i++)
-                if (cart[i].ProductId.Equals(id))
-                    return i;
-            return -1;
+            List<CartItem> cart = new List<CartItem>();
+
+            string cartString = HttpContext.Session.GetString("cart");
+            if (cartString != null)
+                cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
+            
+            CartItem item = cart.Find(c => c.ProductId == id);
+            cart.Remove(item);
+
+            cartString = JsonConvert.SerializeObject(cart);
+            HttpContext.Session.SetString("cart", cartString);
+
+            return RedirectToAction("Cart");
         }
 
 
