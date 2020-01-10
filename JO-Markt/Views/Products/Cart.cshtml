@@ -50,7 +50,11 @@
 
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
+                    <form asp-action="IncreaseAmount">
+                        <input type="text" name="Amount" class="form-control" style="width:20%;" value="@Html.DisplayFor(modelItem => item.Amount)" />
+                        <input type="hidden" name="ProductId" value="@Html.DisplayFor(modelItem => item.ProductId)" />
+                        <input type="submit" style="position: absolute; left: -9999px" />
+                    </form>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TotalPrice)

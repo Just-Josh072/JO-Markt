@@ -323,7 +323,24 @@ namespace JO_Markt.Controllers
             return RedirectToAction("Cart");
         }
 
+        public IActionResult IncreaseAmount(int ProductId, [Bind("Amount, ProductId")] CartItemViewModel civm)
+        {
+            List<CartItem> cart = new List<CartItem>();
 
+            string cartString = HttpContext.Session.GetString("cart");
+            if (cartString != null)
+                cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
+
+
+            CartItem item = cart.Find(c => c.ProductId == ProductId);
+            item.Amount = civm.Amount;
+
+
+            cartString = JsonConvert.SerializeObject(cart);
+            HttpContext.Session.SetString("cart", cartString);
+
+            return RedirectToAction("Cart");
+        }
 
     }
 }
