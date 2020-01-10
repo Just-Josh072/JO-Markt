@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System;
 using System.Globalization;
+using System.Xml;
 
 namespace JOMarkt.Controllers
 {
@@ -58,11 +59,11 @@ namespace JOMarkt.Controllers
 
         public IActionResult Index()
         {
-          
-            List<Promotions> model = new List<Promotions>();
-           
 
-           
+            List<Promotions> model = new List<Promotions>();
+
+
+
 
             return View(model);
         }
@@ -72,8 +73,8 @@ namespace JOMarkt.Controllers
             return View();
         }
 
-        
-               
+
+
 
         public IActionResult article()
         {
@@ -93,7 +94,7 @@ namespace JOMarkt.Controllers
             XElement xelement = XElement.Load("https://supermaco.starwave.nl/api/promotions");
             IEnumerable<XElement> promo = xelement.Elements();
 
-           
+
             foreach (var promotion in promo)
             {
                 Product p = new Product();
@@ -101,7 +102,7 @@ namespace JOMarkt.Controllers
 
                 pro.Title = (promotion.Element("Title").Value);
                 pro.Discount_Id = Convert.ToInt32(promotion.Element("Discount_Id"));
-               // pro.EAN = (promotion.Element("EAN").Value);
+                // pro.EAN = (promotion.Element("EAN").Value);
                 pro.DiscountPrice = Convert.ToDouble(promotion.Element("DiscountPrice").Value, CultureInfo.InvariantCulture);
                 pro.ValidUntil = Convert.ToDateTime(promotion.Element("ValidUntil"));
 
@@ -115,5 +116,8 @@ namespace JOMarkt.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
+        
+
     }
 }
