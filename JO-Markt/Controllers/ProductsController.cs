@@ -401,5 +401,26 @@ namespace JO_Markt.Controllers
 
             return View(cartvm);
         }
+
+        public ActionResult Remove(string id)
+        {
+            List<CartItem> cart = (List<CartItem>)Session["cart"];
+            int index = isExist(id);
+            cart.RemoveAt(index);
+            Session["cart"] = cart;
+            return RedirectToAction("Index");
+        }
+
+        private int isExist(string id)
+        {
+            List<CartItem> cart = (List<CartItem>)Session["cart"];
+            for (int i = 0; i < cart.Count; i++)
+                if (cart[i].ProductId.Equals(id))
+                    return i;
+            return -1;
+        }
+
+
+
     }
 }
