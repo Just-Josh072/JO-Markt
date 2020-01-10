@@ -5,49 +5,77 @@
 }
 
 
-    <div class="customcontainer">
+<div class="customcontainer">
+    <p>
+        <a asp-action="LoadXML">Load XML</a>
+    </p>
+    <p>
+        <a asp-action="DeleteData">delete products</a>
+    </p>
+    <br />
+    <h1>Producten</h1>
+
+
+    <form asp-controller="Products" asp-action="Index" method="get">
         <p>
-            <a asp-action="LoadXML">Load XML</a>
+            <input type="text" class="from mr-sm-2" type="text" name="SearchString" placeholder="Zoek een product...">
+            <input class="btn btn-danger my-2 my-sm-0" type="submit" value="Zoek" />
         </p>
-        <p>
-            <a asp-action="DeleteData">delete products</a>
-        </p>
-        <br />
-        <h1>Producten</h1>
+    </form>
 
 
-        <form asp-controller="Products" asp-action="Index" method="get">
-            <p>
-                <input type="text" class="from mr-sm-2" type="text" name="SearchString" placeholder="Zoek een product...">
-                <input class="btn btn-danger my-2 my-sm-0" type="submit" value="Zoek" />
-            </p>
-        </form>
+    <hr />
+    <br />
+    @*<ul class="row justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div style="text-align: center; align-content:center; text-decoration: none;">
+                <a asp-action="Detailpagina" asp-route-id="@item.Id" style="text-decoration: none;">
 
-
-        <hr />
-        <br />
-        <ul class="row justify-content-center">
-            @foreach (var item in Model)
-            {
-                <div style="text-align: center; align-content:center; text-decoration: none;">
-                    <a asp-action="Detailpagina" asp-route-id="@item.Id" style="text-decoration: none;">
-
-                        <div class="card" style="width: 18rem; style="text-align: center; align-content:center">
-                            <div style="width:100%; style="text-align: center; align-content:center">
-                                <img class="productfoto" style="margin-top:20px; width:99%;" src="@item.Image">
-                            </div>
-                            <div class="card-body" style="height:120px;max-height:120px;">
-                                <p class="producttitel">Merk: @Html.DisplayFor(modelItem => item.Brand)</p>
-
-                                @Html.DisplayFor(modelItem => item.Title)
-                            </div>
-                           <p class="price">&euro;@Html.DisplayFor(modelItem => item.Price)</p>
-                           <a asp-action="AddToCart" class="btn btn-success btn-block" asp-route-id="@item.Id">In winkelwagen</a>
+                    <div class="card" style="width: 18rem; style="text-align: center; align-content:center">
+                        <div style="width:100%; style="text-align: center; align-content:center">
+                            <img class="productfoto" style="margin-top:20px; width:99%;" src="@item.Image">
                         </div>
+                        <div class="card-body" style="height:120px;max-height:120px;">
+                            <p class="producttitel">Merk: @Html.DisplayFor(modelItem => item.Brand)</p>
 
-                    </a>
-                </div>
-            }
-        </ul>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </div>
+                       <p class="price">&euro;@Html.DisplayFor(modelItem => item.Price)</p>
+                       <a asp-action="AddToCart" class="btn btn-success btn-block" asp-route-id="@item.Id">In winkelwagen</a>
+                    </div>
+
+                </a>
+            </div>
+        }
+        </ul>*@
+<div class="container">
+    <div class="row" style="margin:0">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3"  style="margin:0px; padding:0px; text-align: center; align-content:center; text-decoration: none;">
+                <a asp-action="Detailpagina" asp-route-id="@item.Id" style="text-decoration: none;">
+
+                    <div class="card" style="text-align: center; align-content:center">
+                        <div style="width:100%; text-align: center; align-content:center">
+                            <img class="productfoto" style="margin-top:20px; width:99%;" src="@item.Image">
+                        </div>
+                        <div class="card-body">
+                            @*<p class="producttitel">Merk: @Html.DisplayFor(modelItem => item.Brand)</p>*@
+                            <p>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </p>
+
+                            <p>&euro;@Html.DisplayFor(modelItem => item.Price)</p>
+                            <a asp-action="AddToCart" class="btn btn-success" asp-route-id="@item.Id">In winkelwagen</a>
+                        </div>
+                    </div>
+
+                </a>
+            </div>
+        }
     </div>
+
+</div>
+</div>
 

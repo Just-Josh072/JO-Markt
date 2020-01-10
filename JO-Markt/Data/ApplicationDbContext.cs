@@ -39,6 +39,8 @@ namespace JOMarkt.Data
         public DbSet<JOMarkt.Models.articles> articles { get; set; }
         public DbSet<Promotions> Promotions { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
 
     }
 }

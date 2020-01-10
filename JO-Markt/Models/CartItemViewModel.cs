@@ -13,7 +13,7 @@ namespace JOMarkt.Models
         public double Price { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
-        public double Amount { get; set; }
+        public int Amount { get; set; }
         public double TotalPrice
         {
             get
