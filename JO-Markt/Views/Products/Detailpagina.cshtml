@@ -39,26 +39,26 @@
                         </h1>
                         <hr />
                     </dd>
-                   
+
                     <p style="font-size: 20px;  margin-top:5%;">@Html.DisplayFor(m => m.Product.Fulldescription)</p>
                     <dd class="col-sm-10">
 
                         <p style="font-size: 40px; font-weight: bold; margin-top:10%;">&euro;@Html.DisplayFor(m => m.Product.Price)</p>
                         <p style="font-size: 20px; color:grey; font-weight: bold; margin-top:-5%;"> @Html.DisplayFor(m => m.Product.Weight)</p>
 
-                        @*@Html.DisplayFor(m => m.Product.Id)*@ <br />
 
                     </dd>
-                    
-                    <dd>
-                        <a asp-action="AddToCart" class="btn btn-success btn-block" asp-route-id="@Model.Product.Id">In winkelwagen</a>
-                    </dd>
-                    
                     <dd class="col-sm-10">
                         <p style="color: grey;margin-top:-2%;">@Html.DisplayFor(m => m.Product.EAN)</p>
                         <p style="color: grey;margin-top:-3%;">@Html.DisplayFor(m => m.Product.Brand)</p>
 
                     </dd>
+
+                    <dd>
+                        <a asp-action="AddToCart" class="btn btn-success btn-block" asp-route-id="@Model.Product.Id">In winkelwagen</a>
+                    </dd>
+
+
                 </div>
 
             </div>
