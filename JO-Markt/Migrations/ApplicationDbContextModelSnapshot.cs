@@ -222,7 +222,7 @@ namespace JOMarkt.Migrations
 
                     b.Property<string>("EAN");
 
-                    b.Property<string>("Image");
+                    b.Property<string>("Imageurl");
 
                     b.Property<string>("Title");
 
