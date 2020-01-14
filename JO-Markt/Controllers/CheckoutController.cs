@@ -67,13 +67,13 @@ namespace JOMarkt.Controllers
         public async Task<IActionResult> Index(CheckoutViewModel model)
         {
             Order order = new Order();
-            // ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
 
             order.Address = model.Address;
             order.City = model.City;
             order.Name = model.Name;
 
-            // order.User = user;
+            order.User = user;
             order.OrderLines = new List<OrderLine>();
 
             List<CartItem> cart = new List<CartItem>();
