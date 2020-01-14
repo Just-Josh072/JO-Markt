@@ -20,6 +20,6 @@ namespace JOMarkt.Models
         public double DiscountPrice { get; set; }
         public DateTime ValidUntil { get; set; }
 
-        public string Image { get; set; }
+        public string Imageurl { get; set; }
     }
 }

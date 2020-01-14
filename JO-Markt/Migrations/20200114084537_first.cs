@@ -2,7 +2,7 @@
 
 namespace JOMarkt.Migrations
 {
-    public partial class correctt : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
