@@ -64,6 +64,9 @@ namespace JOMarkt.Areas.Identity.Pages.Account
             public string Straat { get; set; }
             [Required]
             [DataType(DataType.Text)]
+            public string Huisnummer { get; set; }
+            [Required]
+            [DataType(DataType.Text)]
             public string Postcode { get; set; }
             public int PhoneNumber { get; set; }
 
