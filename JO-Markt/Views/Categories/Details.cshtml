@@ -43,7 +43,7 @@
             <div style="width:100%; text-align:center;">
               
             </div>
-            <div class="card-body">
+            <div class="card-body" style="text-align:center;">
                 <p class="card-text" style="color:white;">
                     <br />
 
@@ -62,15 +62,15 @@
 
             <div class="card" style="width: 18rem;">
 
-                <div class="card">
-                    <p class="card" style="color:black;">
+                <div class="card" style="text-align:center;">
+                    <p class="card" style="color:black; text-align:center;">
                         <br />
 
                         <br />
                         @Html.DisplayFor(modelItem => product.Title)
                         <img class="card-img" style=" width:90%;" src="@product.Image">
                     <p class="price">&euro;@Html.DisplayFor(modelItem => product.Price)</p>
-                    <a asp-action="AddToCart" class="btn btn-success btn-block" asp-route-id="@product.Id">In winkelwagen</a>@*doet het nog niet*@
+                    <a asp-action="AddToCart" class="btn btn-success" asp-route-id="@product.Id">In winkelwagen</a>
                     </p>
 
                 </div>
