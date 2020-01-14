@@ -65,51 +65,42 @@ namespace JOMarkt.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Index(CheckoutViewModel model)
-
         {
             Order order = new Order();
+            // ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+
             order.Address = model.Address;
             order.City = model.City;
             order.Name = model.Name;
 
-            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
-
-            order.User = user;
-
-
-
-
+            // order.User = user;
             order.OrderLines = new List<OrderLine>();
-
 
             List<CartItem> cart = new List<CartItem>();
 
-            string cartString = HttpContext.Session.GetString("cart");
+            string cartString = HttpContext.Session.GetString("Cart");
             if (cartString != null)
                 cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
 
-
             foreach (CartItem ci in cart)
             {
-
                 Product p = _context.Product.Find(ci.ProductId);
+                OrderLine po = new OrderLine();
+                po.Amount = ci.Amount;
+                po.Price = p.Price;
+                po.ProductId = ci.ProductId;
+                order.OrderLines.Add(po);
 
-                OrderLine ol = new OrderLine();
-                ol.Amount = ci.Amount;
-                ol.Price = p.Price;
-                ol.ProductId = ci.ProductId;
+                try
+                {
+                    _context.Add(order);
+                    _context.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return StatusCode(500);
+                }
 
-                order.OrderLines.Add(ol);
-            }
-            try
-            {
-                _context.Add(order);
-                _context.SaveChanges();
-            }
-            catch (Exception e)
-
-            {
-                return StatusCode(500);
             }
 
             return View("Confirm");
