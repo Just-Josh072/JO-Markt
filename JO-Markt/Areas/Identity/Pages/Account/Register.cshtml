@@ -17,8 +17,6 @@
                     <div class="gender-form">
                         <label asp-for="Input.Geslacht" class="gender-label">Dhr.</label>
                         <input type="radio" asp-for="Input.Geslacht" value="Male" />
-                    </div>
-                    <div class="gender-form">
                         <label asp-for="Input.Geslacht" class="gender-label">Mevr.</label>
                         <input type="radio" asp-for="Input.Geslacht" value="Female" />
                     </div>
@@ -35,8 +33,6 @@
                     <input asp-for="Input.Straat" class="form-control" />
                     @*<label asp-for="Input.HouseNumber">Huisnummer</label>
                     <input asp-for="Input.HouseNumber" class="form-control" />*@
-                    @*<label asp-for="Input.HouseNumberAddition">Toev.</label>
-                    <input asp-for="Input.HouseNumberAddition" class="form-control" />*@
                 </div>
             </div>
             <div class="col-form-1">
@@ -55,7 +51,7 @@
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Input.Password">Wachtwoord</label>
+                    <label asp-for="Input.Password">Wachtwoord(Het wachtwoord moet minimaal 1 getal en 1 Hoofdletter bevatten.)</label>
                     <input asp-for="Input.Password" class="form-control" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
@@ -70,7 +66,7 @@
             </div>
             <div class="col-form-2">
                 <hr />
-                <p>Heeft u al een JO-Markt profiel? Hier kunt u <a class="" asp-page="/Account/Login">inloggen</a>.</p>
+                <p>Heeft u al een JO-Markt profiel? Hier kunt u <a class="" asp-page="/Account/Login">Inloggen</a>.</p>
             </div>
         </form>
     </div>

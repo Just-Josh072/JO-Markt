@@ -60,12 +60,12 @@
                     @Html.DisplayFor(modelItem => item.TotalPrice)
                 </td>
                 <td>
-                    <a class="btn btn-dark" asp-action="Delete" asp-route-id="@item.ProductId">Yeetus</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProductId">Product Verwijderen</a>
                 </td>
             </tr>
         }
     </tbody>
     </table>
 
-    <a class="btn btn-primary text-light" asp-action="Index" asp-controller="Checkout">Checkout</a>
+    <a class="btn btn-success text-light" asp-action="Index" asp-controller="Checkout">Checkout</a>
 
