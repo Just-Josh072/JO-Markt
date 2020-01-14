@@ -50,10 +50,10 @@
         }
         </ul>*@
 <div class="container">
-    <div class="row" style="margin:0">
+    <div class="row" style="margin:0 ;">
         @foreach (var item in Model)
         {
-            <div class="col-md-3"  style="margin:0px; padding:0px; text-align: center; align-content:center; text-decoration: none;">
+            <div class="col-md-3"  style="margin:0px; padding:0px; height:auto">
                 <a asp-action="Detailpagina" asp-route-id="@item.Id" style="text-decoration: none;">
 
                     <div class="card" style="text-align: center; align-content:center">
@@ -62,10 +62,11 @@
                         </div>
                         <div class="card-body">
                             @*<p class="producttitel">Merk: @Html.DisplayFor(modelItem => item.Brand)</p>*@
-                            <p>
+                            <p style=" position:absolute; font-size:15px; margin-left:50px; margin-right:50px">
                                 @Html.DisplayFor(modelItem => item.Title)
                             </p>
-
+                            <br />
+                            <br />
                             <p>&euro;@Html.DisplayFor(modelItem => item.Price)</p>
                             <a asp-action="AddToCart" class="btn btn-success" asp-route-id="@item.Id">In winkelwagen</a>
                         </div>
