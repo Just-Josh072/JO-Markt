@@ -38,6 +38,7 @@ namespace JOMarkt.Controllers
             List<CartItemViewModel> cartvm = new List<CartItemViewModel>();
 
             double totalPrice = 0;
+            ViewBag.totalAmount = 0;
 
             foreach (CartItem ci in cart)
             {
@@ -51,6 +52,8 @@ namespace JOMarkt.Controllers
                 civm.Name = p.Title;
                 civm.Price = p.Price;
                 civm.ImageUrl = p.Image;
+
+                ViewBag.totalAmount += civm.Amount;
 
                 totalPrice += ci.Amount * p.Price;
 

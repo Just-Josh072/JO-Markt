@@ -8,6 +8,7 @@
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -175,13 +176,13 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Categories" asp-action="Index">category</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Categories" asp-action="Index">Categorie</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="Cart">Shoppingcart</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="Cart">Winkelwagen @ViewBag.totalAmount</a>
                         </li>
 
                     </ul>
@@ -196,32 +197,37 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="footer" style="height: auto">
-        <div class="container bottom_border">
+    <footer class="footer" style="">
+        <div class="container bottom_border"style="height:390px;">
             <div class="row">
-                <div class=" col-sm-4 col-md col-sm-4  col-12 col">
+                <div class=" col-sm-4 col-md col-sm-4  col-12 col"style="left:7%;">
                     <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
                     <!--headin5_amrc-->
                     <p class="mb10">
-                    <p><i class="fa fa-location-arrow"></i> postcode Alkmaar/NL</p>
-                    <p><i class="fa fa-phone"></i>  +31-1234567  </p>
-                    <p><i class="fa fa fa-envelope"></i> gmail@gmail.com  </p>
+                    <p><i class="fa fa-location-arrow"></i> ALkmaar</p>
+                    <p><i class="fa fa-phone"></i>  +31-6543210  </p>
+                    <p><i class="fa fa fa-envelope"></i> name@gmail.com  </p>
 
 
                 </div>
 
 
-
-
+                <div class=" col-sm-4 col-md  col-6 col">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Social Media</h5>
+                    <!--headin5_amrc-->
+                    <ul class="footer_ul_amrc">
+                        <li> <a href="#" class="fa fa-facebook">  sefsdfsdfaf</a></li>
+                        <li><a href="#" class="fa fa-twitter"> asedfghj</a></li>
+                        <li> <a href="#" class="fa fa-linkedin"> qwesdfghy</a></li>
+                    </ul>
+                        </div>
+      
 
                 <div class=" col-sm-4 col-md  col-6 col">
-                    <h5 class="headin5_amrc col_white_amrc pt2"> support</h5>
+                    <h5 class="headin5_amrc col_white_amrc pt2">Contact</h5>
                     <!--headin5_amrc-->
                     <ul class="footer_ul_amrc">
                         <li><iframe width="300" height="200" id="gmap_canvas" src="https://maps.google.com/maps?q=horizon%20college%20alkmaar&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></li>
-                        <li><a href="https://www.amsterdam-travel-guide.net/nl/de-wallen.php">contact p komt hier</a></li>
-
 
                     </ul>
                     <!--footer_ul_amrc ends here-->
@@ -235,11 +241,13 @@
 
 
         <!--foote_bottom_ul_amrc ends here-->
-        <p class="text-center">Copyright &copy;2019 | Designed With by JoMarkt</p>
+        <p class="text-center">Copyright &copy;2019 | Designed With by <a href="#">JoMarkt</a></p>
 
 
 
     </footer>
+
+
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

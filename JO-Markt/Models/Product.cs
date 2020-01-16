@@ -30,8 +30,9 @@ namespace JOMarkt.Models
        // [ForeignKey("SubcategoryId")]
         public int SubcategoryId { get; set; }
         public SubCategory Subcategory { get; set; }
-      //  public string Subsubcategory { get; set; }
-       
+        public int Quantity { get; internal set; }
+        //  public string Subsubcategory { get; set; }
+
 
     }
 }
