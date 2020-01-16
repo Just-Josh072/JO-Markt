@@ -5,60 +5,86 @@
 }
 
 
-<div class="customcontainer">
-    <p>
-        <a asp-action="LoadXML">Load XML</a>
-    </p>
-    <p>
-        <a asp-action="DeleteData">delete products</a>
-    </p>
-    <br />
-    <h1>Producten</h1>
-
-
-    <form asp-controller="Products" asp-action="Index" method="get">
+    <div class="customcontainer">
         <p>
-            <input type="text" class="from mr-sm-2" type="text" name="SearchString" placeholder="Zoek een product...">
-            <input class="btn btn-danger my-2 my-sm-0" type="submit" value="Zoek" />
+            <a asp-action="LoadXML">Load XML</a>
         </p>
-    </form>
+        <p>
+            <a asp-action="DeleteData">delete products</a>
+        </p>
+        <br />
+        <h1>Producten</h1>
 
-
-    <hr />
-    <br />
-   
-<div class="container">
-    <div class="row" style="margin:0">
-        @foreach (var item in Model)
+        @if (TempData["Message"] != null)
         {
-        <div class="col-md-3" style="margin:0px; padding:0px; text-align: center; align-content:center; text-decoration: none;">
-            <a asp-action="Detailpagina" asp-route-id="@item.Id" style="text-decoration: none;">
+            <div id="helpdiv" class="alert alert-success" role="alert" style="
 
-                <div class="card" style="height:450px; text-align: center; align-content:center">
-                    <div style=" width:100%; text-align: center; align-content:center">
-                        <img class="productfoto" style="margin-top:20px; width:99%;" src="@item.Image">
-                    </div>
-                    <div style="width:100%; height:20px; margin-bottom:20px;">
-                        <p>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <p>&euro;@Html.DisplayFor(modelItem => item.Price)</p>
-                        <dd>
-                        <a asp-action="AddToCart" class="btn btn-success" asp-route-id="@item.Id">
-                            In winkelwagen
-                        </a>
-                        </dd>
+  position: fixed;
+  top: 50%;
+  left:0px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 
-                    </div>
-                </div>
 
-                </a>
+">
+                @TempData["Message"]
             </div>
-        }
-    </div>
+            <script type="text/javascript">
+                // close the div in 5 secs
+                window.setTimeout("closeHelpDiv();", 1600);
 
-</div>
-</div>
+                function closeHelpDiv() {
+                    document.getElementById("helpdiv").style.display = " none";
+                }
+            </script>
+        }
+
+        <form asp-controller="Products" asp-action="Index" method="get">
+            <p>
+                <input type="text" class="from mr-sm-2" type="text" name="SearchString" placeholder="Zoek een product...">
+                <input class="btn btn-danger my-2 my-sm-0" type="submit" value="Zoek" />
+            </p>
+        </form>
+
+
+        <hr />
+        <br />
+
+        <div class="container">
+            <div class="row" style="margin:0">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3" style="margin:0px; padding:0px; text-align: center; align-content:center; text-decoration: none;">
+                        <a asp-action="Detailpagina" asp-route-id="@item.Id" style="text-decoration: none;">
+
+                            <div class="card" style="height:450px; text-align: center; align-content:center">
+                                <div style=" width:100%; text-align: center; align-content:center">
+                                    <img class="productfoto" style="margin-top:20px; width:99%;" src="@item.Image">
+                                </div>
+                                <div style="width:100%; height:20px; margin-bottom:20px;">
+                                    <p>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <p>&euro;@Html.DisplayFor(modelItem => item.Price)</p>
+                                    <dd>
+                                        <a asp-action="AddToCart" class="btn btn-success" asp-route-id="@item.Id">
+                                            In winkelwagen
+                                        </a>
+
+
+                                    </dd>
+
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
 
