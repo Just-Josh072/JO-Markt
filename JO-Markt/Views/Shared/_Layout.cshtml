@@ -147,6 +147,15 @@
                     height: 20px;
                     text-align: center;
                 }
+                .ZoekHeader{
+                    background-color:aliceblue;
+                 
+                  
+                    margin-top:-16px;
+                }
+                .zoe{
+                    margin-left:200px;
+                }
     </style>
 </head>
 <body>
@@ -191,6 +200,19 @@
             </div>
         </nav>
     </header>
+    <div class="ZoekHeader">
+        <div class="zoe">
+            <form asp-controller="Products" asp-action="Index" method="get">
+                <p>
+                    <input type="text" class="from mr-sm-2" type="text" name="SearchString" placeholder="Zoek een product...">
+                    <input class="btn btn-danger my-2 my-sm-0" type="submit" value="Zoek" />
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+    <hr />
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
@@ -198,9 +220,9 @@
         </main>
     </div>
     <footer class="footer" style="">
-        <div class="container bottom_border"style="height:390px;">
+        <div class="container bottom_border" style="height:390px;">
             <div class="row">
-                <div class=" col-sm-4 col-md col-sm-4  col-12 col"style="left:7%;">
+                <div class=" col-sm-4 col-md col-sm-4  col-12 col" style="left:7%;">
                     <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
                     <!--headin5_amrc-->
                     <p class="mb10">
@@ -220,8 +242,8 @@
                         <li><a href="#" class="fa fa-twitter"> asedfghj</a></li>
                         <li> <a href="#" class="fa fa-linkedin"> qwesdfghy</a></li>
                     </ul>
-                        </div>
-      
+                </div>
+
 
                 <div class=" col-sm-4 col-md  col-6 col">
                     <h5 class="headin5_amrc col_white_amrc pt2">Contact</h5>
