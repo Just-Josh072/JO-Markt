@@ -10,6 +10,7 @@ namespace JOMarkt.Models
     {
         public List<CartItemViewModel> CartItems { get; set; }
         public double TotalPrice { get; set; }
+        public double TotalAmount { get; set; }
 
         [Required]
         public string Name { get; set; }

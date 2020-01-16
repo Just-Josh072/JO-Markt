@@ -251,6 +251,8 @@ namespace JO_Markt.Controllers
             if (cartString != null)
                 cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
 
+            ViewBag.totalAmount = 0;
+
             CartItem item = new CartItem
             {
                 Amount = 1,
@@ -266,6 +268,7 @@ namespace JO_Markt.Controllers
             {
                 cart.Add(item);
             }
+            ViewBag.totalAmount += item2.Amount;
 
             cartString = JsonConvert.SerializeObject(cart);
             HttpContext.Session.SetString("cart", cartString);
@@ -287,6 +290,8 @@ namespace JO_Markt.Controllers
 
             List<CartItemViewModel> cartvm = new List<CartItemViewModel>();
 
+            ViewBag.totalAmount = 0;
+
             foreach (CartItem ci in cart)
             {
                 CartItemViewModel civm = new CartItemViewModel();
@@ -299,6 +304,7 @@ namespace JO_Markt.Controllers
                  civm.Name = p.Title;
                 civm.Price = p.Price;
                 civm.ImageUrl = p.Image;
+                ViewBag.totalAmount += civm.Amount;
 
                 cartvm.Add(civm);
             }
@@ -343,6 +349,7 @@ namespace JO_Markt.Controllers
 
             return RedirectToAction("Cart");
         }
+
 
     }
 }
