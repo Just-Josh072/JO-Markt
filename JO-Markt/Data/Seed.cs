@@ -34,6 +34,28 @@ namespace JOMarkt.Data
 
                 }
             }
+            if (roleManager.FindByNameAsync("WebManager").Result == null)
+            {
+                IdentityRole role = new IdentityRole { Name = "WebManager" };
+                roleManager.CreateAsync(role).Wait();
+
+            }
+            if (userManager.FindByEmailAsync("Web@Web.com").Result == null)
+            {
+                ApplicationUser user = new ApplicationUser
+                {
+                    UserName = "Web@Web.com",
+                    Email = "Web@Web.com"
+                };
+
+
+                IdentityResult result = userManager.CreateAsync(user, "Password123!").Result;
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "WebManager").Wait();
+
+                }
+            }
         }
     }
 }

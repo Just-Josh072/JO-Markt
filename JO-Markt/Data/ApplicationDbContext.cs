@@ -32,12 +32,15 @@ namespace JOMarkt.Data
 
         }
         public DbSet<JOMarkt.Models.Product> Product { get; set; }
+        public DbSet<JOMarkt.Models.Bezorgslot> Bezorgslot { get; set; }
         public DbSet<JOMarkt.Models.Category> Category { get; set; }
         public DbSet<JOMarkt.Models.SubCategory> SubCategory { get; set; }
         public DbSet<JOMarkt.Models.SubsubCategory> SubsubCategory { get; set; }
         public DbSet<JOMarkt.Models.articles> articles { get; set; }
         public DbSet<Promotions> Promotions { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
 
     }
 }

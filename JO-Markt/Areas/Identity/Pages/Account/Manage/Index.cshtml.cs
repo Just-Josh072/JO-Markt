@@ -54,6 +54,7 @@ namespace JOMarkt.Areas.Identity.Pages.Account.Manage
             [Required]
             [DataType(DataType.Text)]
             public string Achternaam { get; set; }
+            public string Straat { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -68,13 +69,15 @@ namespace JOMarkt.Areas.Identity.Pages.Account.Manage
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
+
             Username = userName;
 
             Input = new InputModel
             {
                 Email = email,
-                PhoneNumber = phoneNumber
-
+                PhoneNumber = phoneNumber,
+               
+                
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);

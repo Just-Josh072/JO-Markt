@@ -64,7 +64,11 @@ namespace JOMarkt.Areas.Identity.Pages.Account
             public string Straat { get; set; }
             [Required]
             [DataType(DataType.Text)]
+            public string Huisnummer { get; set; }
+            [Required]
+            [DataType(DataType.Text)]
             public string Postcode { get; set; }
+            public int PhoneNumber { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]

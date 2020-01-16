@@ -1,0 +1,46 @@
+﻿@model JOMarkt.Models.Bezorgslot
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Verwijderen</h2>
+
+<h3>Weet u zeker dat u dit wilt verwijderen?</h3>
+<div>
+    <h4>Bezorgslot</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Datum)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datum)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BeginTijd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BeginTijd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EindTijd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EindTijd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Prijs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Prijs)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="BezorgslotId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

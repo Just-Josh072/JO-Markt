@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JOMarkt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191217124647_yoehoe")]
-    partial class yoehoe
+    [Migration("20200114084537_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -96,6 +96,25 @@ namespace JOMarkt.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("JOMarkt.Models.Bezorgslot", b =>
+                {
+                    b.Property<int>("BezorgslotId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("BeginTijd");
+
+                    b.Property<DateTime>("Datum");
+
+                    b.Property<DateTime>("EindTijd");
+
+                    b.Property<double>("Prijs");
+
+                    b.HasKey("BezorgslotId");
+
+                    b.ToTable("Bezorgslot");
+                });
+
             modelBuilder.Entity("JOMarkt.Models.Category", b =>
                 {
                     b.Property<int>("CategorieId")
@@ -109,6 +128,55 @@ namespace JOMarkt.Migrations
                     b.HasKey("CategorieId");
 
                     b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("JOMarkt.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired();
+
+                    b.Property<string>("City")
+                        .IsRequired();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<DateTime>("OrderDate");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("JOMarkt.Models.OrderLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount");
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<double>("Price");
+
+                    b.Property<int>("ProductId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderLines");
                 });
 
             modelBuilder.Entity("JOMarkt.Models.Product", b =>
@@ -155,6 +223,8 @@ namespace JOMarkt.Migrations
                     b.Property<double>("DiscountPrice");
 
                     b.Property<string>("EAN");
+
+                    b.Property<string>("Imageurl");
 
                     b.Property<string>("Title");
 
@@ -342,6 +412,26 @@ namespace JOMarkt.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("JOMarkt.Models.Order", b =>
+                {
+                    b.HasOne("JOMarkt.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("JOMarkt.Models.OrderLine", b =>
+                {
+                    b.HasOne("JOMarkt.Models.Order", "Order")
+                        .WithMany("OrderLines")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("JOMarkt.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("JOMarkt.Models.Product", b =>
