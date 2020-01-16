@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JOMarkt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200114084537_first")]
-    partial class first
+    [Migration("20200116130519_doethetnu")]
+    partial class doethetnu
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,7 +112,7 @@ namespace JOMarkt.Migrations
 
                     b.HasKey("BezorgslotId");
 
-                    b.ToTable("Bezorgslot");
+                    b.ToTable("Bezorgslots");
                 });
 
             modelBuilder.Entity("JOMarkt.Models.Category", b =>
@@ -128,6 +128,27 @@ namespace JOMarkt.Migrations
                     b.HasKey("CategorieId");
 
                     b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("JOMarkt.Models.Deliveryslots", b =>
+                {
+                    b.Property<int>("DeliveryslotId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Date");
+
+                    b.Property<string>("EndTime");
+
+                    b.Property<bool>("IsChecked");
+
+                    b.Property<double>("Price");
+
+                    b.Property<string>("StartTime");
+
+                    b.HasKey("DeliveryslotId");
+
+                    b.ToTable("Deliveryslots");
                 });
 
             modelBuilder.Entity("JOMarkt.Models.Order", b =>
