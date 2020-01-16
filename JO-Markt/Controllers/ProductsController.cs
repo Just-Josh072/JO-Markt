@@ -251,7 +251,6 @@ namespace JO_Markt.Controllers
             if (cartString != null)
                 cart = JsonConvert.DeserializeObject<List<CartItem>>(cartString);
 
-            ViewBag.totalAmount = 0;
 
             CartItem item = new CartItem
             {
@@ -268,8 +267,6 @@ namespace JO_Markt.Controllers
             {
                 cart.Add(item);
             }
-            ViewBag.totalAmount += item2.Amount;
-
             cartString = JsonConvert.SerializeObject(cart);
             HttpContext.Session.SetString("cart", cartString);
 
