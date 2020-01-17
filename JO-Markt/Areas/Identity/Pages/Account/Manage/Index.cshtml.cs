@@ -55,6 +55,7 @@ namespace JOMarkt.Areas.Identity.Pages.Account.Manage
             [DataType(DataType.Text)]
             public string Achternaam { get; set; }
             public string Straat { get; set; }
+            public string Huisnummer { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -71,14 +72,21 @@ namespace JOMarkt.Areas.Identity.Pages.Account.Manage
 
 
             Username = userName;
-
+            //  user.Voornaam = Input.Voornaam;
             Input = new InputModel
             {
                 Email = email,
                 PhoneNumber = phoneNumber,
-               
-                
-            };
+                Voornaam = user.Voornaam,
+                Achternaam = user.Achternaam,
+                Straat = user.Straat,
+                Huisnummer = user.Huisnummer,
+              
+            
+            
+
+
+        };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 
