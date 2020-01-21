@@ -89,6 +89,7 @@ namespace JOMarkt.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            string userrole = "Member";
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
@@ -102,8 +103,8 @@ namespace JOMarkt.Areas.Identity.Pages.Account
                     Geboortedatum = Input.Geboortedatum,
                     Geslacht = Input.Geslacht,
                     Straat = Input.Straat,
-                    Postcode = Input.Postcode
-
+                    Postcode = Input.Postcode,
+                    Role = userrole
 
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
