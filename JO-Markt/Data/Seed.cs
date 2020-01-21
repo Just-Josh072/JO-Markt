@@ -12,7 +12,7 @@ namespace JOMarkt.Data
 
         public static void SeedUser(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            if (roleManager.FindByNameAsync("Admin").Result == null)
+             if (roleManager.FindByNameAsync("Admin").Result == null)
             {
                 IdentityRole role = new IdentityRole { Name = "Admin" };
                 roleManager.CreateAsync(role).Wait();

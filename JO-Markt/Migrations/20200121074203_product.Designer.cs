@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JOMarkt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200114084537_first")]
-    partial class first
+    [Migration("20200121074203_product")]
+    partial class product
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -196,6 +196,8 @@ namespace JOMarkt.Migrations
                     b.Property<string>("Image");
 
                     b.Property<double>("Price");
+
+                    b.Property<int>("Quantity");
 
                     b.Property<string>("Shortdescription");
 

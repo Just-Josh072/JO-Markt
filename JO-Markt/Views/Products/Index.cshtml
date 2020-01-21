@@ -40,7 +40,12 @@
             </script>
         }
 
-        
+        <form asp-controller="Products" asp-action="Index" method="get">
+            <p>
+                <input type="text" class="from mr-sm-2" type="text" name="SearchString" placeholder="Zoek een product...">
+                <input class="btn btn-danger my-2 my-sm-0" type="submit" value="Zoek" />
+            </p>
+        </form>
 
 
         <hr />
@@ -50,7 +55,7 @@
             <div class="row" style="margin:0">
                 @foreach (var item in Model)
                 {
-                    <div class="col-md-3" style="margin:0px; padding:0px; text-align: center; align-content:center; text-decoration: none;">
+                    <div class="col-md-3" id="@( "product" + @item.Id )" style="margin:0px; padding:0px; text-align: center; align-content:center; text-decoration: none;">
                         <a asp-action="Detailpagina" asp-route-id="@item.Id" style="text-decoration: none;">
 
                             <div class="card" style="height:450px; text-align: center; align-content:center">
@@ -62,7 +67,7 @@
                                         @Html.DisplayFor(modelItem => item.Title)
                                     </p>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" >
                                     <p>&euro;@Html.DisplayFor(modelItem => item.Price)</p>
                                     <dd>
                                         <a asp-action="AddToCart" class="btn btn-success" asp-route-id="@item.Id">

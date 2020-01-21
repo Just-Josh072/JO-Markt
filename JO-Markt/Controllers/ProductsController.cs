@@ -270,9 +270,9 @@ namespace JO_Markt.Controllers
             cartString = JsonConvert.SerializeObject(cart);
             HttpContext.Session.SetString("cart", cartString);
 
-            TempData["Message"] = "Product toegevoegd";
+            TempData["Message"] = "product toegevoegd";
 
-            return RedirectToAction("index");
+            return RedirectToAction("Index", "Products", "product" + id);
         }
 
        

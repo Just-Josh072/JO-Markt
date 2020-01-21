@@ -4,7 +4,11 @@
     ViewData["Title"] = "Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 <h1>Winkelwagen</h1>
 
 
@@ -18,10 +22,10 @@
                 Prijs
             </th>
             <th>
-               Naam
+                Naam
             </th>
             <th>
-               Afbeelding
+                Afbeelding
             </th>
             <th>
                 Aantal
@@ -59,14 +63,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.TotalPrice)
                 </td>
-               
+
                 <td>
                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProductId">Product Verwijderen</a>
                 </td>
+
             </tr>
         }
     </tbody>
-    </table>
+</table>
 
-    <a class="btn btn-success text-light" asp-action="Index" asp-controller="Checkout">Checkout</a>
+<a class="btn btn-success text-light" asp-action="Index" asp-controller="Checkout">Checkout</a>
+<button onclick="goBack(-3)">Continu Shopping</button>
 
