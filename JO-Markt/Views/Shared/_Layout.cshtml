@@ -177,6 +177,10 @@
                         {
                             <a class="nav-link" asp-area="admin" asp-controller="home" asp-action="Index">AdminPannel</a>
                         }
+                        @if (User.IsInRole("WebManager"))
+                        {
+                            <a class="nav-link" asp-area="WebManager" asp-controller="home" asp-action="Index">WebManager Pannel</a>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
