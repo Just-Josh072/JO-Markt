@@ -22,6 +22,9 @@
   <ItemGroup>
     <Folder Include="Areas\admin\Data\" />
     <Folder Include="Areas\admin\Models\" />
+    <Folder Include="Areas\WebManager\Data\" />
+    <Folder Include="Areas\WebManager\Models\" />
+    <Folder Include="Areas\WebManager\Views\" />
   </ItemGroup>
 
 </Project>
