@@ -19,6 +19,11 @@ namespace JO_Markt.Controllers
     {
 
         private readonly JOMarkt.Data.ApplicationDbContext _context;
+       
+
+        //private readonly ApplicationDbContext _context;
+        
+        private readonly RoleManager<IdentityRole> _rolemanager;
         private readonly UserManager<ApplicationUser> _userManager;
 
 
@@ -127,6 +132,57 @@ namespace JO_Markt.Controllers
             {
                 return View();
             }
+        }
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Setadminrole(string id)
+        {
+            string loggedinuser = User.Identity.Name;
+            ApplicationUser CurrentUser = _context.Users.Where(w => w.Email == id).First();
+
+            if (User.Identity.Name == CurrentUser.Email)
+            {
+                return RedirectToAction("User", "index");
+            }
+            CurrentUser.Role = "Admin";
+            await _userManager.AddToRoleAsync(CurrentUser, CurrentUser.Role);
+            _context.Update(CurrentUser);
+            _context.SaveChanges();
+            return RedirectToAction("Admin", "Users");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Setmemberrole(string id)
+        {
+            string loggedinuser = User.Identity.Name;
+            ApplicationUser CurrentUser = _context.Users.Where(w => w.Email == id).First();
+
+            if (User.Identity.Name == CurrentUser.Email)
+            {
+                return RedirectToAction("index");
+            }
+            CurrentUser.Role = "User";
+            await _userManager.AddToRoleAsync(CurrentUser, CurrentUser.Role);
+            _context.Update(CurrentUser);
+            _context.SaveChanges();
+            return RedirectToAction("User", "index");
+        }
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Setauthorrole(string id)
+        {
+            string loggedinuser = User.Identity.Name;
+            ApplicationUser CurrentUser = _context.Users.Where(w => w.Email == id).First();
+
+            if (User.Identity.Name == CurrentUser.Email)
+            {
+                return RedirectToAction("User", "index");
+            }
+
+            string roleName = "WebManager";
+            await _userManager.AddToRoleAsync(CurrentUser, roleName);
+            CurrentUser.Role = "WebManager";
+            _context.Update(CurrentUser);
+            _context.SaveChanges();
+            return RedirectToAction("User", "index");
         }
     }
 }

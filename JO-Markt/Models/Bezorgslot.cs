@@ -11,6 +11,6 @@ namespace JOMarkt.Models
         public DateTime Datum { get; set; }
         public DateTime BeginTijd { get; set; }
         public DateTime EindTijd { get; set; }
-        public Double Prijs { get; set; }
+        public double Prijs { get; set; }
     }
 }

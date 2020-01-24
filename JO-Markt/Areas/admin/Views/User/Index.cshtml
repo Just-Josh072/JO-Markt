@@ -72,15 +72,31 @@
                 @Html.DisplayFor(modelItem => item.Geslacht)
             </td> <td>
                 @Html.DisplayFor(modelItem => item.Telefoonnummer)
-            </td> <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-         
+            </td> 
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+    @if (item.Role == "Admin")
+    {
+        <p style="color:red;"> @Html.DisplayFor(modelItem => item.Role)</p>
+    }
+    else if (item.Role == "Author")
+    {
+        <p style="color:purple;"> @Html.DisplayFor(modelItem => item.Role) </p>
+    }
+    else
+    {
+        <p style="color:green;"> @Html.DisplayFor(modelItem => item.Role) </p>
+    }
+
+</td>
+         
+                  <td>
+                      <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                      <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                      <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>|
+                      <a asp-action="Setadminrole" asp-route-id="@item.Email">Set Admin</a> |
+                      <a asp-action="Setmemberrole" asp-route-id="@item.Email">Set Member</a> |
+                      <a asp-action="Setauthorrole" asp-route-id="@item.Email">Set author </a> |
+                  </td>
         </tr>
 }
     </tbody>

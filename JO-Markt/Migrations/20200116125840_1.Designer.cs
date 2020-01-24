@@ -4,14 +4,16 @@ using JOMarkt.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JOMarkt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200116125840_1")]
+    partial class _1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +44,7 @@ namespace JOMarkt.Migrations
 
                     b.Property<string>("Geslacht");
 
-                    b.Property<string>("Huisnummer");
+                    b.Property<double>("Huisnummer");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -215,8 +217,6 @@ namespace JOMarkt.Migrations
                     b.Property<string>("Image");
 
                     b.Property<double>("Price");
-
-                    b.Property<int>("Quantity");
 
                     b.Property<string>("Shortdescription");
 

@@ -18,7 +18,7 @@ namespace JOMarkt.Models
         public string Achternaam { get; set; }
         public string Postcode { get; set; }
         public string Straat { get; set; }
-        public double Huisnummer { get; set; }
+        public string Huisnummer { get; set; }
         public string Toevoeging { get; set; }
         public int Telefoonnummer { get; set; }
         public string Geboortedatum { get; set; }
