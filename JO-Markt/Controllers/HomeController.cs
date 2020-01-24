@@ -60,12 +60,14 @@ namespace JOMarkt.Controllers
         public IActionResult Index()
         {
 
-            List<Promotions> model = new List<Promotions>();
+            //List<articles> model = new List<articles>();
+
+            List<articles> articles = _context.articles.ToList();
+            return View(articles);
 
 
 
-
-            return View(model);
+           
         }
 
         public IActionResult Privacy()
