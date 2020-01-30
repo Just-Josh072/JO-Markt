@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JOMarkt.Migrations
 {
-    public partial class product : Migration
+    public partial class addmigrationterte : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,7 +64,7 @@ namespace JOMarkt.Migrations
                     Achternaam = table.Column<string>(nullable: true),
                     Postcode = table.Column<string>(nullable: true),
                     Straat = table.Column<string>(nullable: true),
-                    Huisnummer = table.Column<double>(nullable: false),
+                    Huisnummer = table.Column<string>(nullable: true),
                     Toevoeging = table.Column<string>(nullable: true),
                     Telefoonnummer = table.Column<int>(nullable: false),
                     Geboortedatum = table.Column<string>(nullable: true),
@@ -78,7 +78,7 @@ namespace JOMarkt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bezorgslot",
+                name: "Bezorgslots",
                 columns: table => new
                 {
                     BezorgslotId = table.Column<int>(nullable: false)
@@ -90,7 +90,7 @@ namespace JOMarkt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bezorgslot", x => x.BezorgslotId);
+                    table.PrimaryKey("PK_Bezorgslots", x => x.BezorgslotId);
                 });
 
             migrationBuilder.CreateTable(
@@ -105,6 +105,23 @@ namespace JOMarkt.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.CategorieId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Deliveryslots",
+                columns: table => new
+                {
+                    DeliveryslotId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Date = table.Column<string>(nullable: true),
+                    StartTime = table.Column<string>(nullable: true),
+                    EndTime = table.Column<string>(nullable: true),
+                    Price = table.Column<double>(nullable: false),
+                    IsChecked = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Deliveryslots", x => x.DeliveryslotId);
                 });
 
             migrationBuilder.CreateTable(
@@ -466,7 +483,10 @@ namespace JOMarkt.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Bezorgslot");
+                name: "Bezorgslots");
+
+            migrationBuilder.DropTable(
+                name: "Deliveryslots");
 
             migrationBuilder.DropTable(
                 name: "OrderLines");

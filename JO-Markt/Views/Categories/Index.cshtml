@@ -36,11 +36,11 @@ function scrollWin() {
                 <li class="collum" style="list-style-type:none;">
                     <a asp-action="Details" asp-route-id="@item.CategorieId" style="text-decoration: none;">
                         <div class="card" id="catcard" style="width: 18rem;">
-                            <div style="width:100%; text-align:center;">
+                            <div style="width:100%; text-align:center; align-content:center;">
                                 <img class="productfoto" style="margin-top:20px;" src="@item.Image">
                                
                             </div>
-                            <div class="card-body" style="text-align:center;">
+                            <div class="card-body" style="text-align:center; margin-bottom:70px; height:0px;">
                                 <p class="producttitel" style="color:black;">
                                     <br />
                                     @Html.DisplayFor(modelItem => item.Name)

@@ -49,7 +49,7 @@
 
                         <br />
                         @Html.DisplayFor(modelItem => product.Title)
-                        <img class="card-img" style=" width:90%;" src="@product.Image">
+                        <img class="card-img" style="height:100%; width:90%;" src="@product.Image">
                     <p class="price">&euro;@Html.DisplayFor(modelItem => product.Price)</p>
                     <a asp-action="AddToCart" class="btn btn-success btn-block" asp-route-id="@product.Id">In winkelwagen</a>
                     </p>
