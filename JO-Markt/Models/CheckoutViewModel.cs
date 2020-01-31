@@ -13,10 +13,10 @@ namespace JOMarkt.Models
         public double TotalAmount { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Naam { get; set; }
         [Required]
-        public string Address { get; set; }
+        public string Adres { get; set; }
         [Required]
-        public string City { get; set; }
+        public string Stad { get; set; }
     }
 }

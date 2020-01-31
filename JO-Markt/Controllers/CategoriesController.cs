@@ -30,7 +30,7 @@ namespace JO_Markt.Controllers
             {
                 CategorieId = c.CategorieId,
                 Image = c.Product.First().Image,
-                Name = c.Name
+                Name = c.Naam
             }).ToList();
             return View(categories);
             //return View(await _context.Category.ToListAsync());
@@ -173,7 +173,7 @@ namespace JO_Markt.Controllers
             for (int i = 0; i < elemList.Count; i++)
             {
                 Category c = new Category();
-                c.Name = (elemList[i].SelectSingleNode("./Name").InnerXml).Trim();
+                c.Naam = (elemList[i].SelectSingleNode("./Name").InnerXml).Trim();
                 //Console.WriteLine("Name: " + elemList[i].SelectSingleNode("./Name").InnerXml);
 
                 XmlNodeList subcats = elemList[i].SelectNodes("./Subcategory");
