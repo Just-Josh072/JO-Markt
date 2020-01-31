@@ -192,7 +192,7 @@ namespace JO_Markt.Controllers
                 p.Weight = (product.Element("Weight").Value);
                 p.Price = Convert.ToDouble(product.Element("Price").Value,CultureInfo.InvariantCulture);
 
-                p.Category = (categories.FirstOrDefault(sc => sc.Name == product.Element("Category").Value.Trim()));
+                p.Category = (categories.FirstOrDefault(sc => sc.Naam == product.Element("Category").Value.Trim()));
                 p.Subcategory = (subcategories.FirstOrDefault(sc => sc.Name == product.Element("Subcategory").Value.Trim()));
              //   p.Subcategory = (product.Element("Subcategory").Value);
              //   p.Subsubcategory = (product.Element("Subsubcategory").Value);

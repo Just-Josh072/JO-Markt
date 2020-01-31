@@ -72,9 +72,9 @@ namespace JOMarkt.Controllers
             Order order = new Order();
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
 
-            order.Address = model.Address;
-            order.City = model.City;
-            order.Name = model.Name;
+            order.Address = model.Adres;
+            order.City = model.Stad;
+            order.Name = model.Naam;
 
             order.User = user;
             order.OrderLines = new List<OrderLine>();
