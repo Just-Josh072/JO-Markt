@@ -11,7 +11,7 @@ namespace JOMarkt.Models
     {
         [Key]
         public int CategorieId { get; set; }
-        public string Naam { get; set; }
+        public string Name { get; set; }
    
        // public int ProductId { get; set; }
         public ICollection<SubCategory> subcategories { get; set; }
