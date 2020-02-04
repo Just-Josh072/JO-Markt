@@ -9,6 +9,12 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\CartController.cs" />
+    <Compile Remove="Migrations\20200124090827_broodjekaas.cs" />
+    <Compile Remove="Migrations\20200124090827_broodjekaas.Designer.cs" />
+    <Compile Remove="Migrations\20200130155116_add-migration terte.cs" />
+    <Compile Remove="Migrations\20200130155116_add-migration terte.Designer.cs" />
+    <Compile Remove="Migrations\20200131044534_users.cs" />
+    <Compile Remove="Migrations\20200131044534_users.Designer.cs" />
   </ItemGroup>
 
 

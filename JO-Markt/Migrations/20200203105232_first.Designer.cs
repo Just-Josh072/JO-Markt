@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JOMarkt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200130155116_add-migration terte")]
-    partial class addmigrationterte
+    [Migration("20200203105232_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
